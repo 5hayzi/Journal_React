@@ -1,0 +1,113 @@
+.main-div {
+    background-image: url('../../assets/Images/Homepage.png');
+    background-size: cover; /* Scale the image to cover the entire container */
+    background-position: center 1%; /* Center the image within the container */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-color: #fff; /* Optional: Background color in case image is not available */
+    width: 100%; /* Ensure the container takes full width */
+    height: 100vh; /* Set the height to 100% of the viewport height */
+}
+
+.root-div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-family: Montserrat, sans-serif; /* Ensure Montserrat is available or include fallback */
+    margin-left: 15%;
+    margin-top: 6%;
+}
+.main-title{
+    font-size: 4rem;
+    font-weight: bolder;
+    width: fit-content;
+    color: rgba(73, 73, 73, 0.753);
+    margin-bottom: 1.2%;
+}
+.description{
+    margin-bottom: 1%;
+}
+.btn-box{
+   display: flex; 
+   width: 20rem;
+   justify-content: space-between;
+   flex-direction: row;
+}
+.btn{
+    display: flex;
+    flex-direction: row;
+    margin: 10% 0 10% 0;
+    padding: 2%;
+    padding-top: 2.5%;
+    border-radius: 50px;
+    font-weight: 550;
+    text-align: center;
+    box-shadow: rgba(68, 68, 68, 0.747) -2.5px 3px 6px;
+    position: relative;
+}
+.notes-btn{
+    color: white;
+    background: linear-gradient(90deg, rgb(122, 178, 204) 0%, rgba(0,212,255,1) 100%);
+}
+.feature-btn{
+    color: black;
+    background: linear-gradient(0deg, rgb(155, 155, 155) 0%, rgb(185, 185, 185) 100%);
+}
+.goto {
+    visibility: hidden; /* Keep the element hidden initially */
+    position: absolute; /* Position the element absolutely */
+    width: 1.5rem;
+    height: 1.5rem; /* Set height to match width for a circle */
+    background: linear-gradient(200deg, rgb(66, 248, 20) 20%, rgb(46, 196, 8) 100%);
+    border-radius: 100%;
+    top: -8px; /* Position it slightly above the button */
+    right: -8px; /* Position it to the right */
+    z-index: 10; /* Bring the element to the front if necessary */
+    transform: translateY(10px); /* Start 10px below the final position */
+    opacity: 0; /* Initially transparent */
+    transition: transform 0.6s ease, opacity 0.6s ease, visibility 0s 0.6s; /* Transition for both position and opacity, with delayed visibility */
+}
+
+.btn:hover .goto {
+    visibility: visible; /* Show the element on hover */
+    transform: translateY(0); /* Move to the final position (rise) */
+    opacity: 1; /* Fade in */
+    transition: transform 0.6s ease, opacity 0.6s ease; /* Ensure transition matches */
+}
+@media (max-width: 768px) {
+    .main-title{
+        font-size: 2rem;
+    }
+    .description{
+        margin-top: 6%;
+        width: 80%;
+        text-wrap: 1;
+    }
+    .root-div {
+        width: 80%;
+        margin-left: 8% !important;
+        margin-top: 15% !important;
+    }
+    .btn-box{
+        flex-direction: column;
+        width: 80%;
+    }
+    .notes-btn{
+        width: fit-content;
+        margin-bottom: 4%;
+    }
+    .feature-btn{
+        width: fit-content;
+        margin-top: 4%;
+        margin-bottom: 4%;
+    }
+    .main-div {
+        background-image: url('../../assets/Images/books-background.png');
+        background-size: contain; /* Scale the image to cover the entire container */
+        background-position: center 30%; /* Center the image within the container */
+        background-repeat: no-repeat; /* Prevent the image from repeating */
+        background-color: #fff;
+        width: 100%; /* Adjust as needed */
+        height: 100rem; /* Adjust as needed for your layout */
+    }
+}
+
