@@ -1,11 +1,131 @@
-import React from 'react'
-
-function Login() {
-  return (
-    <div>
-      <h1>this is login page</h1>
-    </div>
-  )
+.login-navbar{
+  display: none;
+}
+.login-main-container{
+  display: flex;
+  font-family: Montserrat;
+  justify-content: flex-end;
+}
+.img-container{
+  position: relative;
+  display: flex;
+  flex: 2;
+  background-size:cover; /* Scale the image to cover the entire container */
+    background-position: center; /* Center the image within the container */
+    background-repeat:repeat;
+}
+.img-box {
+  position: relative; /* Required for the pseudo-element to be positioned relative to this element */
+  width: 15%;
+  height: 40%;
+  background: linear-gradient(28deg, rgba(219, 219, 219, 0) 0%, rgba(202, 202, 202, 0.8) 46%, rgba(181, 181, 181, 0.9) 100%);
+  border-radius: 0.4rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  overflow: hidden; /* Ensures that the pseudo-element stays within the box */
 }
 
-export default Login
+.login-form-container{
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  flex: 1;
+  height: 100vh;
+  padding-right: 9rem;
+  padding-left: 9rem;
+  justify-content: center;
+  align-items: center;
+}
+.logo-title{
+  font-size: 2rem;
+}
+.logo-line{
+  height: 0.1rem;
+  background-color: rgb(0, 0, 0);
+  margin-bottom: 1rem;
+}
+.form-area{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 5rem 2rem 0 2rem;
+}
+.text-area{
+  text-align:start;
+  height: 3rem;
+  font-size: 1rem;
+  padding: 0.2rem;
+  margin-bottom: 1.2rem;
+  border-radius: 0.2rem;
+}
+.remember-box{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#rememberCheck{
+  border-radius: 0.2rem;
+  margin-right: 0.5rem;
+}
+.login-btn-box{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 1.7rem;
+  margin-bottom: 2rem;
+}
+.login-btn{
+  width: 100%;
+  background-color: rgba(216, 216, 216, 0.747);
+  font-size: 1.5rem;
+  font-weight: 550;
+  border-radius: 0.2rem;
+  padding: 0.1rem 0.5rem;
+}
+.other-login{
+  display: flex;
+  flex-direction: row;
+  width: 85%;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.login-options{
+  display: flex;
+  width: 6rem;
+  height: 2.5rem;
+  border-radius: 0.2rem;
+  background-color: rgba(146, 146, 146, 0.103);
+  align-items: center;
+  justify-content: center;
+}
+.img-logo{
+  width: 1.6rem;
+}
+.extra-option{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .login-navbar{
+    display: flex;
+  }
+  .img-container{
+    display: none;
+  }
+  .login-form-container{
+    padding: 0 !important;
+    
+  }
+  .login-main-container{
+    display: flex;
+    width: 100vw;
+    margin-top: 0.1rem !important;
+    justify-content: center;
+  }
+  .form-area{
+    padding: 3rem;
+  }
+}

@@ -8,7 +8,6 @@ function Notes() {
     <NavBar/>
     <div>
       <div>
-        <SideNavBar/>
         </div>
     </div>
     </>

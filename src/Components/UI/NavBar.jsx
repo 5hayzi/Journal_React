@@ -3,7 +3,8 @@ import'../../Styles/index.css'
 import { Link } from 'react-router-dom'
 import '../../Styles/UI/NavBar.css'
 import SideNavBar from './SideNavBar'
-import { UserCircleIcon } from '@heroicons/react/24/solid'
+
+import AccountDropdown from './AccountDropdown'
 
 function NavBar() {
   return (
@@ -18,7 +19,7 @@ function NavBar() {
         <Link to="/about" className='nav-icon' >About</Link>
       </div>
       <div className='account-box'>
-      <UserCircleIcon className="size-12 fill-black/100 account"  />
+      <AccountDropdown/>
     </div>
     </div>
   )
