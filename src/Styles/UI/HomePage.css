@@ -10,7 +10,8 @@
 .root-div {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    /* max-width: 70%;
+    height: 100vh; */
     font-family: Montserrat, sans-serif; /* Ensure Montserrat is available or include fallback */
     margin-left: 15%;
     margin-top: 6%;
@@ -24,6 +25,7 @@
 }
 .description{
     margin-bottom: 1%;
+    max-width: 60%;
 }
 .btn-box{
    display: flex; 
@@ -42,6 +44,8 @@
     text-align: center;
     box-shadow: rgba(68, 68, 68, 0.747) -2px 1.5px 6px;
     position: relative;
+    border-width: 1px;
+    border-color: black;
 }
 .notes-btn{
     color: white;
@@ -102,11 +106,11 @@
     .main-div {
         background-image: url('../../assets/Images/books-background.png');
         background-size: contain; /* Scale the image to cover the entire container */
-        background-position: center 30%; /* Center the image within the container */
+        background-position: center 25rem; /* Center the image within the container */
         background-repeat: no-repeat; /* Prevent the image from repeating */
         background-color: #fff;
         width: 100%; /* Adjust as needed */
-        height: 100rem; /* Adjust as needed for your layout */
+        height: 100%; /* Adjust as needed for your layout */
     }
 }
 

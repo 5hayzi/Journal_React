@@ -1,4 +1,3 @@
-import React from 'react'
 import NavBar from './NavBar'
 import { Link } from 'react-router-dom'
 import '../../Styles/UI/HomePage.css'
@@ -33,14 +32,14 @@ function HomePage() {
             <Link to='/view-notes' className='btn notes-btn'>
             Start Writing
             <div className='goto' id="goto-notes" >
-            <img src='src\assets\arrow-up-right.svg'/>
+            <img src='src/assets/arrow-up-right.svg'/>
             </div>
             </Link>
 
             <Link to='/features' className='btn feature-btn'>
             See Whats New?
             <div className='goto' id="goto-features">
-            <img src='src\assets\arrow-up-right.svg'/>
+            <img src='src/assets/arrow-up-right.svg'/>
             </div>
             </Link>
             

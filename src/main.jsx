@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import NavBar from './Components/UI/NavBar.jsx'
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -8,10 +8,18 @@ import {
 import './Styles/index.css'
 import HomePage from './Components/UI/HomePage.jsx';
 import Notes from './Components/UI/Notes.jsx';
-import SignUp from './Components/Access/SignUp.jsx'
-import Login from './Components/Access/Login.jsx'
+
+import Access from './Components/Access/Access.jsx';
+import ResetPassword from './Components/Access/ResetPassword.jsx';
+import Error404 from './Components/Error/Error404.jsx';
+import Error500 from './Components/Error/Error500.jsx';
+
 
 const router = createBrowserRouter([
+  {
+    path: "*",
+    element:<Error404/>
+  },
   {
   path: "/",
   element:<HomePage/>
@@ -21,16 +29,25 @@ const router = createBrowserRouter([
   element:<Notes/>
   },
   {
-  path:"/log-in",
-  element:<Login/>
+  path:"/access/log-in",
+  element:<Access/>
   },
-    {
-    path:"/sign-up",
-    element:<SignUp/>
-    }
+  {
+  path:"/access/sign-up",
+  element:<Access/>
+  },
+  {
+  path:"/access/log-in/reset-password",
+  element:<ResetPassword/>
+  },
+  {
+  path:"/error500",
+  element:<Error500/>
+  } 
 ])
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <RouterProvider router={router}/>
   </StrictMode>,
 )
