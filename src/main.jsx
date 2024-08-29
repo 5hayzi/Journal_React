@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import './Styles/index.css'
 import HomePage from './Components/UI/HomePage.jsx';
-import Notes from './Components/UI/Notes.jsx';
+import NoteMenu from './Components/Notes/NotesMenu.jsx'
 
 import Access from './Components/Access/Access.jsx';
 import ResetPassword from './Components/Access/ResetPassword.jsx';
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
   },
   {
   path:"/view-notes",
-  element:<Notes/>
+  element:<NoteMenu/>
   },
   {
   path:"/access/log-in",
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
   {
   path:"/error500",
   element:<Error500/>
-  } 
+  }
 ])
 
 createRoot(document.getElementById('root')).render(

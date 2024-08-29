@@ -69,10 +69,11 @@ function SignUp() {
   return (
     <>
       <div className="flex justify-end w-full h-screen font-raleway overflow-hidden">
-      <div className="flex items-center w-2/4 h-98 flex-col mt-28">
+
+      <div className="flex items-center w-2/4 h-98 flex-col mt-28 sm:w-full sm:m-0 sm:p-8 sm:mt-5">
       
-      <h1 className="text-2xl raleway font-bold text-center border-b-2 border-black h-14 mb-14">Welcome to your new diary</h1>
-      <form className="w-2/4 flex flex-col mb-5" onSubmit={onSubmit}>
+      <h1 className="text-2xl raleway font-bold text-center border-b-2 border-black h-14 mb-14 sm:mb-6 sm:h-16">Welcome to your new diary</h1>
+      <form className="w-2/4 flex flex-col mb-5 sm:w-full" onSubmit={onSubmit}>
             <div className="w-full flex flex-row justify-between">
             <div className="flex flex-col w-5/12">
             <label htmlFor="firstname_textarea">First Name</label>
@@ -172,7 +173,7 @@ function SignUp() {
       </form>
 
       <h1 className="text-l raleway text-center border-b-2 border-black mb-6">Or</h1>
-      <div className="flex justify-evenly items-center w-2/5 mb-6">
+      <div className="flex justify-evenly items-center w-2/5 mb-6 sm:w-full">
             <button className="flex items-center justify-center w-1/5 h-10 bg-gray-100 rounded">
               <img src={googleLogo} title="Google" className="w-7"/>
             </button>

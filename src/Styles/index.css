@@ -9,7 +9,23 @@
 .h-98{
     height: 98%;
 }
-#root{
+.w-99{
+    width: 99%;
+}
+html, body{
     width: 100vw;
     height: 100vh;
+    overflow-x: hidden;
+}
+.bg-primary-l{
+    background-color: #F4F4F2;
+}
+.bg-primary-m{
+    background-color: #E8E8E8;
+}
+.bg-primary-b{
+    background-color: #BBBFCA;
+}
+.bg-primary-dark{
+    background-color: #495464;
 }
