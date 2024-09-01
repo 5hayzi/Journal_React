@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { UserCircleIcon } from '@heroicons/react/24/solid'// Make sure to import your icon
+import { UserIcon } from '@heroicons/react/24/solid'// Make sure to import your icon
 import { Link } from 'react-router-dom';
 
 function AccountDropdown() {
@@ -11,10 +11,11 @@ function AccountDropdown() {
 
   return (
     <div className="relative">
-      <UserCircleIcon 
-        className="size-12 fill-black/100 account cursor-pointer" 
+      <div className="size-9 rounded-full border border-black flex items-center justify-center">
+      <UserIcon 
+        className="size-7 fill-black/100 account cursor-pointer" 
         onClick={toggleDropdown} 
-      />
+      /></div>
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
           <ul className="py-1">

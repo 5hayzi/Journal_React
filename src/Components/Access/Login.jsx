@@ -6,6 +6,7 @@ import twitterLogo from '../../assets/Images/twitter-logo.svg'
 import TwoFactorAuthentication from './TwoFactorAuthentication'
 import { useState } from 'react'
 import { ArrowLeftIcon } from "@heroicons/react/24/solid"
+import Button from '../UI/Button'
 
 function Login() {
   const[isEnabled, setIsEnabled] = useState(false);
@@ -17,7 +18,7 @@ function Login() {
   
   return (
     <>
-      <div className="flex justify-end w-full h-screen font-raleway">
+      <div className="flex justify-end w-full h-screen font-montserrat">
         <div
           className="w-2/4 h-98 bg-cover bg-center bg-repeat sm:hidden self-center ml-2 rounded-xl"
           style={{ backgroundImage: `url(${backgroundLogin})` }}
@@ -56,22 +57,28 @@ function Login() {
             </div>
 
             <div className="flex justify-center mt-6 mb-8 w-full">
-              <button className="w-2/3 inline-flex justify-center whitespace-nowrap rounded bg-indigo-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-300 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition-colors duration-150" onClick={Enable}>
+              <Button className="
+                bg-indigo-500
+                hover:bg-indigo-600 
+                focus:ring-indigo-300  
+                focus-visible:ring-indigo-300
+                !w-3/4">
                 Log In
-              </button>
+              </Button>
+              
             </div>
           </form>
 
           <div className="flex justify-between items-center w-3/6 mb-6">
-            <button className="flex items-center justify-center w-24 h-10 bg-gray-100 rounded">
+            <Button className="bg-gray-200 !w-24">
               <img src={googleLogo} title="Google" className="w-7"/>
-            </button>
-            <button className="flex items-center justify-center w-24 h-10 bg-gray-100 rounded">
+            </Button>
+            <Button className="bg-gray-200 !w-24">
               <img src={facebookLogo} title="Facebook" className="w-7"/>
-            </button>
-            <button className="flex items-center justify-center w-24 h-10 bg-gray-100 rounded">
+            </Button>
+            <Button className="bg-gray-200 !w-24">
               <img src={twitterLogo} title="Twitter" className="w-7"/>
-            </button>
+            </Button>
           </div>
 
           <div className="flex flex-col items-center justify-around">

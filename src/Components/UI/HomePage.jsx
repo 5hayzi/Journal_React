@@ -1,4 +1,5 @@
 import NavBar from './NavBar'
+
 import { Link } from 'react-router-dom'
 import '../../Styles/UI/HomePage.css'
 import { TypeAnimation } from 'react-type-animation';
@@ -7,6 +8,7 @@ import { TypeAnimation } from 'react-type-animation';
 function HomePage() {
   return (
     <>
+    
     <div className='main-div'>
       <NavBar/>
       <div className='root-div'>

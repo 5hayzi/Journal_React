@@ -9,7 +9,7 @@ import Button from "../UI/Button";
 
 function NotesMenu() {
   const [search, setSearch] = useState('');
-  const data = [
+  const [data, setData] = useState([
   {
     title: "first dairy",
     date: "31-8-2024"
@@ -26,12 +26,14 @@ function NotesMenu() {
     title: "Fourth dairy",
     date: "23-5-2024"
   }
-]
+]);
+
 const [filterData, setFilterData] = useState(data);
 
   useEffect(()=>{
    setFilterData(data.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
-  },[search]);
+  },[search, data]);
+  
 
 const [isOpen, setIsOpen] = useState(false);
 
@@ -44,17 +46,22 @@ setIsOpen(!isOpen);
     <NavBar/>
 
     <div className="w-full h-fit flex flex-col px-4">
-    {isOpen && (<CreateMenu setIsOpen={setIsOpen}/>)}
-    <div className='w-full min-h-screen rounded flex flex-col bg-primary-m items-center font-raleway '>
+    {isOpen && (<CreateMenu setIsOpen={setIsOpen} setData={setData} data={data}/>)}
+    <div className='w-full min-h-screen rounded flex flex-col bg-primary-l items-center font-montserrat '>
       <div className="w-11/12 flex flex-row my-4 justify-between items-center">
-        <div className="w-2/4 h-10 bg-white flex flex-row gap-3 rounded p-2">
-        <MagnifyingGlassIcon className="fill-black w-6 border-r border-gray-200"/>  
-        <input type='text' className="w-full h-full" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)}/>
+        <div className="w-2/4 h-10 bg-white flex flex-row gap-1 rounded p-1">
+        <label htmlFor='search_box' className="flex">
+        <MagnifyingGlassIcon   className="fill-black w-6"/></label>
+        <input type='text' className="w-full h-full border-l border-gray-200 px-2" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)} id="search_box"/>
         
         </div>
         <div className="flex flex-row gap-3 relative">
-        <Button color='slate' onClick={createNewPage}>
-          <PlusIcon className="fill-black w-4"/>
+        <Button onClick={createNewPage} className="
+        bg-slate-500
+        hover:bg-slate-600 
+        focus:ring-slate-300  
+        focus-visible:ring-slate-300 ">
+          <PlusIcon className="fill-white w-5"/>
           New
         </Button>
 
@@ -62,6 +69,14 @@ setIsOpen(!isOpen);
       </div>
       </div>
       
+      {useEffect(()=>{
+      console.log("___________________________");
+      data.forEach(element => {
+        console.log(element);
+      });
+      console.log("___________________________");
+      
+      },[data])}
     
       {filterData.map((element, index) => {
         return (<Titleblock key={index} title={element.title} date={element.date}/>);

@@ -4,16 +4,24 @@ import googleLogo from '../../assets/Images/google-logo.svg'
 import twitterLogo from '../../assets/Images/twitter-logo.svg'
 import signupGif from '../../assets/Images/typing.gif'
 import { TypeAnimation } from 'react-type-animation';
+import { ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/solid'
+import Button from '../UI/Button'
+import { Link } from 'react-router-dom'
+
 
 
 
 function SignUp() {
+  const[isOpen, setIsOpen] = useState(false);
   const[firstName, setFirstName] = useState('');
   const[secondName, setSecondName] = useState('');
   const[email, setEmail] = useState('');
   const[password, setPassword] = useState('');
   const[passCheck, setPassCheck] = useState('');
-  const [isMatch, setIsMatch] = useState(true);
+  const [isMatch, setIsMatch] = useState();
+  const[image, setImage] = useState(null);
+  const[twoFactor, setTwoFactor] = useState(false);
+  const[agreeCheck, setAgreeCheck] = useState(false);
   // const[errors, setErrors] =useState({
   //   password:[],
   // });
@@ -46,10 +54,9 @@ function SignUp() {
     }
   }
 
-  console.log(charValid.uppercase);
-  console.log(charValid.specialChar);
-  console.log(charValid.passLength);
-  console.log("this is very " + isValid);
+  console.log(isMatch);
+  console.log(isValid);
+  console.log(isOpen);
   
 
   const onSubmit = (e)=>{
@@ -61,21 +68,18 @@ function SignUp() {
     (passCheck === password)? setIsMatch(true) : setIsMatch(false);
   }, [password,passCheck]);
 
-  // useEffect(() => {
-  //   password.forEach(e => {
-  //     if((e == '!'||e == '#'||e == '@'||e == '?'))
-  //   })
-  // }, [password]);
+  
   return (
     <>
-      <div className="flex justify-end w-full h-screen font-raleway overflow-hidden">
+      <form className="flex justify-end w-full h-screen font-montserrat overflow-hidden" onSubmit={onSubmit}>
 
-      <div className="flex items-center w-2/4 h-98 flex-col mt-28 sm:w-full sm:m-0 sm:p-8 sm:mt-5">
+      <div className={`flex items-center w-2/4 h-98 flex-col mt-28 -translate-x-full transition-transform duration-500 ${!isOpen ? '!translate-x-0':''} sm:w-full sm:m-0 sm:p-8 sm:mt-5`}>
       
-      <h1 className="text-2xl raleway font-bold text-center border-b-2 border-black h-14 mb-14 sm:mb-6 sm:h-16">Welcome to your new diary</h1>
-      <form className="w-2/4 flex flex-col mb-5 sm:w-full" onSubmit={onSubmit}>
+      <h1 className="text-2xl font-montserrat font-semibold text-center border-b-2 border-black h-10 mb-14 sm:mb-6 sm:h-16">Welcome to your new diary</h1>
+      <div className=" w-2/4 flex flex-col mb-5 sm:w-full" >
+            {/* <div className={`flex flex-col w-full `}> */}
             <div className="w-full flex flex-row justify-between">
-            <div className="flex flex-col w-5/12">
+            <div className="flex flex-col w-5/12 text-nowrap">
             <label htmlFor="firstname_textarea">First Name</label>
             <input
               type="text"
@@ -86,7 +90,7 @@ function SignUp() {
               onChange={(e) => setFirstName(e.target.value)}
             />
             </div>
-            <div className="flex flex-col w-5/12">
+            <div className="flex flex-col w-5/12 text-nowrap">
             <label htmlFor="secondname_textarea">Second Name</label>
             <input
               type="text"
@@ -162,39 +166,123 @@ function SignUp() {
             {!isMatch && (
           <p className="text-red-500 text-sm mb-2">Passwords do not match</p>
           )}
-
-        <button
-          type="submit"
-          className='w-1/4 h-10 font-semibold text-center bg-gray-200 text-l rounded self-center mt-1 hover:cursor-pointer'
-          disabled={!isMatch && !isValid}
+        
+        <Button
+          className="
+            bg-indigo-500
+            hover:bg-indigo-600 
+            focus:ring-indigo-300  
+            focus-visible:ring-indigo-300
+            self-end"
+          // disabled={isMatch == false && isValid == false} 
+          onClick={()=>{if (isMatch && isValid){
+              setIsOpen(true);
+          }
+        else{
+            setIsOpen(true);
+        }}}
         >
-          Sign Up
-        </button>
-      </form>
+          <ArrowRightIcon className='fill-white w-5'/>
+        </Button>
+        
+      </div>
 
-      <h1 className="text-l raleway text-center border-b-2 border-black mb-6">Or</h1>
-      <div className="flex justify-evenly items-center w-2/5 mb-6 sm:w-full">
-            <button className="flex items-center justify-center w-1/5 h-10 bg-gray-100 rounded">
+      <h1 className="text-l  text-center border-b-2 border-black mb-6">Or</h1>
+      <div className="flex justify-evenly items-center w-3/6 mb-6 sm:w-full">
+            <Button className="bg-gray-200 !w-24">
               <img src={googleLogo} title="Google" className="w-7"/>
-            </button>
-            <button className="flex items-center justify-center w-1/5 h-10 bg-gray-100 rounded">
+            </Button>
+            <Button className="bg-gray-200 !w-24">
               <img src={facebookLogo} title="Facebook" className="w-7"/>
-            </button>
-            <button className="flex items-center justify-center w-1/5 h-10 bg-gray-100 rounded">
+            </Button>
+            <Button className="bg-gray-200 !w-24">
               <img src={twitterLogo} title="Twitter" className="w-7"/>
-            </button>
+            </Button>
           </div>
       </div>
 
-      <div className="flex w-2/4 h-98 bg-blue-500 rounded-xl self-center mr-2 sm:hidden justify-center relative" >
+      <div className={`fixed z-0 flex items-center w-2/4 h-98 flex-col mt-28 translate-x-full transition-transform duration-500 ${isOpen ? '!-translate-x-full sm:!translate-x-0':''} sm:w-full sm:m-0 sm:p-8 sm:mt-5`}>
+      <h1 className="text-2xl font-montserrat font-semibold text-center border-b-2 border-black h-10 mb-14 sm:mb-6 sm:h-16">One last step....</h1>
+      <div className=" w-2/4 flex flex-col mb-5 sm:w-full gap-1" onSubmit={onSubmit}>
+            <label htmlFor="image_area">Add Image</label>
+            <div className="flex flex-col w-full rounded border p-2 mb-16">
+            <img src={image} htmlFor='image_area' alt='image' className='w-36 h-36 text-center rounded-full border border-gray-300 mb-3 self-center'/>
+            <input
+              type="file"
+              name="image_area"
+              id="image_area"
+              className="text-left text-sm" 
+              required
+              accept="image/*"
+              onChange={(e)=>{
+                const file = e.target.files[0];
+                if (file) {
+                  setImage(URL.createObjectURL(file));
+                }}}
+            />
+            
+            </div>
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="two_factor_check"
+                id="two_factor_check"
+                className="rounded mr-2"
+                onChange={()=>setTwoFactor(!twoFactor)}
+              />
+              <label htmlFor="two_factor_check">Enable Two Factor Authentication</label>
+            </div>
+              <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="AgreementCheck"
+                id="AgreementCheck"
+                className="rounded mr-2"
+                onChange={()=>setAgreeCheck(!agreeCheck)}
+                required
+              />
+              <label htmlFor="AgreementCheck">I Acknowledge and accept to the <Link className='text-blue-400'>terms and conditions</Link> of the Agreement.</label>
+            </div>
+          <div className="flex flex-row w-full justify-between items-center mt-2">
+          <Button
+          className="
+            bg-red-500
+            hover:bg-red-600 
+            focus:ring-red-300  
+            focus-visible:ring-red-300 
+            self-start"
+          
+          onClick={()=>{setIsOpen(false)}}
+        >
+          <ArrowLeftIcon className='fill-white w-5'/>
+        </Button>
+        <Button
+          type='submit'
+          className="
+            bg-indigo-500
+            hover:bg-indigo-600 
+            focus:ring-indigo-300  
+            focus-visible:ring-indigo-300"
+          disabled={!agreeCheck} 
+          onClick={()=>console.log("this is accepatbel")
+          }
+        >
+          Sumbit
+        </Button>
+        </div>
+      </div>
+      </div>
+
+      <div className="flex w-2/4 z-20 h-98 bg-blue-500 rounded-xl self-center mr-2 sm:hidden justify-center relative" >
         <h1 className="w-1/4 text-7xl text-white absolute top-10 left-16">Start writing today</h1>
         <img className="w-2/4 h-2/4 bg-contain bg-center absolute top-72 left-20" src={signupGif}/>
-        <div className="w-2/4 h-1/5 bg-gray-600 bg-opacity-40 absolute top-64 right-10 rounded-lg p-3"> 
+        <div className="w-2/4 min-h-40 bg-gray-600 bg-opacity-40 absolute top-64 right-10 rounded-lg p-3"> 
         <TypeAnimation
       sequence={[
-        // Same substring at the start will only be typed out once, initially
+        "",
+        1000,
         "The territory today known as England became inhabited more than 700",
-        1000, // wait 1s before replacing "Mice" with "Hamsters"
+        1000,
         "The territory today known as England became inhabited more than 800,000 years ago, as the of",
         1000,
         "The territory today known as England became inhabited more than 800,000 years ago, as the discovery of stone tools and footprints at Happsburgh",
@@ -204,13 +292,13 @@ function SignUp() {
       ]}
       wrapper="span"
       speed={40}
-      className='text-white text-xl'
+      className='text-white text-lg'
       repeat={Infinity}
     />
         </div>
       </div>
     
-    </div>
+    </form>
     </>
   )
 }

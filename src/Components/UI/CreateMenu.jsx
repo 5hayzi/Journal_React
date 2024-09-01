@@ -2,8 +2,15 @@ import PropTypes from 'prop-types'
 import { useState } from 'react';
 import moment from 'moment';
 import Button from './Button';
+import { useEffect } from 'react';
 
 function CreateMenu(props) {
+  const [title, setTitle] = useState('');
+  const [createData, setCreateData] = useState(
+    { 
+      title: '',
+      date: '' 
+    });
   const [date, setDate] = useState();
 
   setTimeout((()=>{
@@ -15,26 +22,51 @@ function CreateMenu(props) {
       props.setIsOpen(false)
   }
 
-  const setDelete = (e)=>{
+  useEffect(()=>{
+    setCreateData({
+      title: title,
+      date: date
+    })
+  },[title]);
+
+
+
+  const onSubmit = (e)=>{
     e.preventDefault();
-    console.log("Delete works properly");  
+    props.setData([...props.data, createData]);
+    props.setIsOpen(false)
   }
 
   return (
-    <form className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mt-2 w-1/4 bg-white rounded shadow-lg z-10 font-montserrat flex flex-col gap-3 p-3 sm:w-2/3 active:backdrop-blur-3xl">
-          <input type="text" placeholder="Enter Title" value={props.title} className="p-2 text-lg border border-gray-400 rounded focus:border-black" />
-          <input type="text" placeholder="Enter Title" value={date} className="p-2 text-lg border border-gray-400 rounded focus:border-black"/>
+    <form className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mt-2 w-2/6 bg-white rounded shadow-lg z-10 font-montserrat flex flex-col gap-4 p-5 sm:w-2/3 active:backdrop-blur-3xl" onSubmit={onSubmit}>
+          <div className='flex flex-col gap-1'>
+          <label htmlFor="create_title" className="text-lg">Journal page title </label>
+          <input type="text" name="journal_title" placeholder="Enter Title" value={title} onChange={(e)=>setTitle(e.target.value)} className="p-2 text-lg border border-gray-400 rounded focus:border-black" id='create_title' required/>
+          </div>
+          <div className='flex flex-col gap-1'>
+          <label htmlFor="create_date" className="text-lg">Journal Date: </label>
+          <input type="text" name="journal_date" placeholder="Enter Title" value={date} className="p-2 text-lg border border-gray-400 rounded focus:border-black" id='create_date' required/>
+          </div>
           <div className="flex flex-row w-full justify-between">
-          <Button color='red' onClick={handleOpen}><span>Cancel</span></Button>
-          <Button color='indigo' onClick={setDelete}><span>Submit</span></Button>
+          <Button onClick={handleOpen} className="
+          bg-red-500
+          hover:bg-red-600 
+          focus:ring-red-300  
+          focus-visible:ring-red-300 "><span>Cancel</span></Button>
+          <Button type="submit" className="
+          bg-indigo-500
+          hover:bg-indigo-600 
+          focus:ring-indigo-300  
+          focus-visible:ring-indigo-300 "><span>Submit</span></Button>
           </div>
         </form>
   );
 }
 
 CreateMenu.propTypes = {
-  title: PropTypes.string.isRequired,
-  setIsOpen: PropTypes.func
+  setIsOpen: PropTypes.func,
+  setData: PropTypes.func,
+  data: PropTypes.array
 }
 
 export default CreateMenu;

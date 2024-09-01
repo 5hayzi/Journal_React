@@ -13,6 +13,7 @@ import Access from './Components/Access/Access.jsx';
 import ResetPassword from './Components/Access/ResetPassword.jsx';
 import Error404 from './Components/Error/Error404.jsx';
 import Error500 from './Components/Error/Error500.jsx';
+import NotesEditor from './Components/Notes/NotesEditor.jsx';
 
 
 const router = createBrowserRouter([
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   path:"/view-notes",
   element:<NoteMenu/>
   },
+  {
+    path:"/view-notes/editor",
+    element:<NotesEditor/>
+    },
   {
   path:"/access/log-in",
   element:<Access/>
@@ -51,3 +56,5 @@ createRoot(document.getElementById('root')).render(
     <RouterProvider router={router}/>
   </StrictMode>,
 )
+
+
