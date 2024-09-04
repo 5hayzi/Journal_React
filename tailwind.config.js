@@ -10,6 +10,28 @@ export default {
         montserrat : ["Montserrat", "sans-serif"],
         raleway : ["Raleway", "sans-serif"],
       },
+      animation:{
+        blob: "blob 7s infinite",
+      },
+      keyframes:{
+        blob:{
+          "0%":{
+            transform:"translate(0px,0px) scale(1)",
+          },
+          "33%":{
+            transform:"translate(300px,-50px) scale(1.3)",
+          },
+          "58%":{
+            transform:"translate(-300px,-100px) scale(1.3)",
+          },
+          "66%":{
+            transform:"translate(-70px,100px) scale(0.9)",
+          },
+          "100%":{
+            transform:"translate(0px,0px) scale(1)",
+          },
+        },
+      },
     },
     screens: {
       'sm': {'max': '767px'},

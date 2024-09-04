@@ -31,14 +31,17 @@ function HomePage() {
     />
         <h2 className='description'>Create your very own journal with all your notes synced seamlessly across all devices.</h2>
         <div className='btn-box'>
-            <Link to='/view-notes' className='btn notes-btn'>
+          
+            <Link to='/view-notes' className='btn notes-btn bg-green-400 '>
             Start Writing
             <div className='goto' id="goto-notes" >
             <img src='src/assets/arrow-up-right.svg'/>
             </div>
             </Link>
+            
 
-            <Link to='/features' className='btn feature-btn'>
+            
+            <Link to='/features' className='btn feature-btn bg-slate-400'>
             See Whats New?
             <div className='goto' id="goto-features">
             <img src='src/assets/arrow-up-right.svg'/>

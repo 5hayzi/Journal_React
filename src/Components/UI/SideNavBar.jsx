@@ -54,7 +54,7 @@ export default function SideNavBar() {
          <div>
          <ul className="space-y-2 font-medium">
          <li>
-            <Link to="/profile" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white">
+            <Link to="/settings/account" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white">
                
                <span className="flex-1 ms-3 whitespace-nowrap">User</span>
             </Link>

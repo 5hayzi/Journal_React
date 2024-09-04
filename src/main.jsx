@@ -14,6 +14,7 @@ import ResetPassword from './Components/Access/ResetPassword.jsx';
 import Error404 from './Components/Error/Error404.jsx';
 import Error500 from './Components/Error/Error500.jsx';
 import NotesEditor from './Components/Notes/NotesEditor.jsx';
+import Settings from './Components/User/Settings.jsx';
 
 
 const router = createBrowserRouter([
@@ -48,7 +49,28 @@ const router = createBrowserRouter([
   {
   path:"/error500",
   element:<Error500/>
-  }
+  },
+  {
+    path:"/settings",
+    element:<Settings/>
+  },
+  {
+    path:"/settings/account",
+    element:<Settings/>
+  },
+  {
+    path:"/settings/general",
+    element:<Settings title='general'/>
+  },
+  {
+    path:"/settings/notification",
+    element:<Settings title='notification'/>
+  },
+  {
+    path:"/settings/delete-account",
+    element:<Settings title='delete-account'/>
+  },
+  
 ])
 
 createRoot(document.getElementById('root')).render(

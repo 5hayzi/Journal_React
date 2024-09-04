@@ -2,6 +2,7 @@ import { useState, useRef, useMemo } from 'react';
 import JoditEditor from 'jodit-react';
 import NavBar from '../UI/NavBar'
 import '../../Styles/Editor/Editor.css'
+import TitleBlock from './NotesUI/Titleblock'
 
 export default function NotesEditor() {
 	const editor = useRef(null);
@@ -35,7 +36,9 @@ export default function NotesEditor() {
     <>
     <NavBar/>
     <div className="w-99 h-fit flex flex-row gap-5  bg-gray-300 p-5 mx-3 rounded sm:!mx-0 sm:w-full sm:px-2 sm:py-4 sm:flex-col sm:items-center overflow-hidden">
-    <div className="w-20 bg-opacity-60 bg-slate-200 rounded flex flex-1 flex-col sm:hidden"></div>
+    <div className="w-20 bg-opacity-60 bg-slate-200 rounded flex flex-1 flex-col sm:hidden">
+    
+    </div>
     
     <div className=' h-fit flex flex-col bg-slate-200 p-4 rounded sm:p-0'>
 		<JoditEditor
