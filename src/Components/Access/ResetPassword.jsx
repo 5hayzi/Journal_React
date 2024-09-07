@@ -44,7 +44,7 @@ function ResetPassword() {
       }, [newPassword,newPassCheck]);
   return (
     
-    <div className="flex justify-center items-center h-screen font-raleway">
+    <div className="flex justify-center items-center h-screen font-montserrat">
         <div className="w-1/4 bg-gray-300 p-7 rounded">
         <header className="text-2xl mb-4">Reset Password</header>
         <form onSubmit={onSubmit} className="flex flex-col">

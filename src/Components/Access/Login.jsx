@@ -62,7 +62,8 @@ function Login() {
                 hover:bg-indigo-600 
                 focus:ring-indigo-300  
                 focus-visible:ring-indigo-300
-                !w-3/4">
+                !w-3/4"
+                onClick={Enable}>
                 Log In
               </Button>
               

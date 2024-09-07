@@ -1,4 +1,4 @@
-#nav-container{
+#nav-container {
     display: flex;
     width: 100%;
     font-size: 0.9rem;
@@ -8,7 +8,8 @@
     padding: 10px;
     z-index: 50;
 }
-#logo{
+
+#logo {
     display: flex;
     font-size: 2rem;
     font-weight: bolder;
@@ -18,11 +19,13 @@
     text-shadow: rgba(139, 139, 139, 0.295) -2px 3px;
 
 }
-#logo:hover{
+
+#logo:hover {
     font-style: italic;
     text-shadow: rgba(0, 0, 0, 0.205) -2px 3px;
 }
-#nav-element{
+
+#nav-element {
     display: flex;
     height: 2.3rem;
     flex: 3;
@@ -32,30 +35,36 @@
     align-items: center;
     align-self: center;
 }
-#nav-container-mobile{
+
+#nav-container-mobile {
     display: none;
 }
-.account-box{
+
+.account-box {
     display: flex;
     flex: 1;
     align-items: center;
     margin-right: 3%;
     flex-direction: row-reverse;
 }
-@media(max-width: 768px){
-    #nav-element{
+
+@media(max-width: 768px) {
+    #nav-element {
         display: none;
     }
-    #logo{
+
+    #logo {
         font-size: 1.5rem;
         flex: 1.6;
-        
+
     }
-    #nav-container-mobile{
+
+    #nav-container-mobile {
         display: flex;
         flex: 1;
     }
-    .account-box{
-    display: none;
+
+    .account-box {
+        display: none;
     }
 }

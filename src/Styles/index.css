@@ -28,6 +28,12 @@ html, body #root{
     width: 100vw;
     height: 100vh;
     overflow-x: hidden;
+    overflow-y: scroll;
+    position: absolute;
+    scrollbar-width:none;
+    scrollbar-color: rgb(0, 0, 0) transparent;
+    scroll-behavior: smooth;
+
 }
 .bg-primary-l{
     background-color: #F4F4F2;
@@ -41,3 +47,27 @@ html, body #root{
 .bg-primary-dark{
     background-color: #495464;
 }
+
+  /* Custom scrollbar styles */
+  #root::-webkit-scrollbar {
+    height: 12px; /* Scrollbar height */
+    background: transparent; /* Transparent background behind the scrollbar */
+  }
+  
+  #root::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Scrollbar handle color */
+    border-radius: 6px; /* Rounded corners */
+  }
+  
+  #root::-webkit-scrollbar-track {
+    background: transparent; /* Transparent track behind the scrollbar */
+    border-radius: 6px;
+  }
+  
+  /* To ensure that the scrollbar doesn't affect layout */
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  

@@ -11,7 +11,7 @@ export default {
         raleway : ["Raleway", "sans-serif"],
       },
       animation:{
-        blob: "blob 7s infinite",
+        blob: "blob 15s infinite",
       },
       keyframes:{
         blob:{

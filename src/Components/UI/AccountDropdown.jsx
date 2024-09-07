@@ -5,7 +5,7 @@ import { Switch } from '@headlessui/react';
 
 function AccountDropdown() {
   const [isOpen, setIsOpen] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [enabled, setEnabled] = useState(false);
 
   const toggleDropdown = () => {
