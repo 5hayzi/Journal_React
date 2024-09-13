@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import moment from 'moment';
 import Button from './Button';
-import { useEffect } from 'react';
 
 function CreateMenu(props) {
   const [title, setTitle] = useState('');
@@ -21,7 +20,7 @@ function CreateMenu(props) {
   const handleOpen = ()=>{
       props.setIsOpen(false)
   }
-
+  
   useEffect(()=>{
     setCreateData({
       title: title,
@@ -38,7 +37,8 @@ function CreateMenu(props) {
   }
 
   return (
-    <form className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mt-2 w-2/6 bg-white rounded shadow-lg z-10 font-montserrat flex flex-col gap-4 p-5 sm:w-2/3 active:backdrop-blur-3xl" onSubmit={onSubmit}>
+    <div className='w-screen h-screen backdrop-blur-lg absolute flex items-center justify-center'>
+    <form className="w-2/6 bg-white rounded shadow-lg z-10 font-montserrat flex flex-col gap-4 p-5 sm:w-2/3 active:backdrop-blur-3xl" onSubmit={onSubmit}>
           <div className='flex flex-col gap-1'>
           <label htmlFor="create_title" className="text-lg">Journal page title </label>
           <input type="text" name="journal_title" placeholder="Enter Title" value={title} onChange={(e)=>setTitle(e.target.value)} className="p-2 text-lg border border-gray-400 rounded focus:border-black" id='create_title' required/>
@@ -59,7 +59,7 @@ function CreateMenu(props) {
           focus:ring-indigo-300  
           focus-visible:ring-indigo-300 "><span>Submit</span></Button>
           </div>
-        </form>
+        </form></div>
   );
 }
 

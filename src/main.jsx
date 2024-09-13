@@ -60,19 +60,23 @@ const router = createBrowserRouter([
   },
   {
     path:"/settings/general",
-    element:<Settings title='general'/>
+    element:<Settings/>
   },
   {
     path:"/settings/notification",
-    element:<Settings title='notification'/>
+    element:<Settings/>
   },
   {
     path:"/settings/delete-account",
-    element:<Settings title='delete-account'/>
+    element:<Settings/>
   },
   
 ])
-
+if (localStorage.getItem('theme') === 'dark') {
+  document.documentElement.classList.add('dark');
+} else {
+  document.documentElement.classList.remove('dark');
+}
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router}/>

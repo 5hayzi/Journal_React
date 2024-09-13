@@ -14,10 +14,10 @@ function AccountDropdown() {
 
   return (
     <div className="relative">
-      <div className="size-9 rounded-full border border-black flex items-center justify-center">
+      <div className="size-9 rounded-full border border-black flex items-center justify-center ">
       {/* <img src=''/> */}
       <UserIcon 
-        className="size-7 fill-black/100 account cursor-pointer" 
+        className="size-7 fill-black/100 account cursor-pointer " 
         onClick={toggleDropdown} 
       /></div>
       {(!loggedIn && isOpen) && (

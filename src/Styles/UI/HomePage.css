@@ -18,6 +18,10 @@
     color: rgba(73, 73, 73, 0.753);
     margin-bottom: 1.2%;
 }
+.dark .main-title {
+    color: rgb(179, 179, 179); /* Color in dark mode */
+}
+
 .description{
     margin-bottom: 1%;
     max-width: 60%;
