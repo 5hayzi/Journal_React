@@ -62,11 +62,11 @@ The primary goal of this project is to build a fully functional notes applicatio
 
 4. **Start the development server**:
     ```bash
-    npm start
+    npm start 
     # or
     pnpm start
     ```
-
+**Note:** Since the Back-End and Front-End are seperated on different folders you may need to install/add packages seperately by changing the directory to that folder.
 ---
 
 ## Usage  
