@@ -21,22 +21,23 @@ The primary goal of this project is to build a fully functional notes applicatio
 
 ## Tech Stack  
 
-| **Technology**   | **Purpose**                                                |
-|------------------|------------------------------------------------------------|
-| **HTML, CSS, JS**| Core technologies for structure, styling, and interactivity |
-| **React JS**     | UI building with reusable components                       |
-| **Node.js**      | Server-side JavaScript for handling requests and responses  |
-| **Vite**         | Development tool for fast React setup and hot-reloading     |
-| **Tailwind CSS** | Utility-first CSS framework for styling directly in JSX     |
-| **Figma**        | Design and prototyping the app layout                       |
-| **React Redux**  | State management across the application                    |
-| **Git/GitHub**   | Version control and code sharing                           |
-| **Express JS**   | Node.js framework for creating back-end routes              |
-| **MongoDB**      | NoSQL database for storing user data and journal entries    |
-| **pnpm**         | Fast package manager for efficient dependency management    |
-| **VS Code**      | Code editor with customizable extensions                    |
-| **Jodit-Editor** | WYSIWYG editor for formatting journal content               |
-| **Moment.js**    | Library for date and timestamp handling                    |
+| **Technology**   | **Purpose**                                                | **Documentation**                                             |
+|------------------|------------------------------------------------------------|---------------------------------------------------------------|
+| **HTML, CSS, JS**| Core technologies for structure, styling, and interactivity | [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web) |
+| **React JS**     | UI building with reusable components                       | [React Documentation](https://react.dev/learn)               |
+| **Node.js**      | Server-side JavaScript for handling requests and responses  | [Node.js Documentation](https://nodejs.org/en/docs/)         |
+| **Vite**         | Development tool for fast React setup and hot-reloading     | [Vite Documentation](https://vitejs.dev/guide/)              |
+| **Tailwind CSS** | Utility-first CSS framework for styling directly in JSX     | [Tailwind CSS Documentation](https://tailwindcss.com/docs)  |
+| **Figma**        | Design and prototyping the app layout                       | [Figma Help Center](https://help.figma.com/hc/en-us)         |
+| **React Redux**  | State management across the application                    | [Redux Documentation](https://react-redux.js.org/introduction/getting-started) |
+| **Git/GitHub**   | Version control and code sharing                           | [Git Documentation](https://git-scm.com/doc),  [GitHub Docs](https://docs.github.com/en)|
+| **Express JS**   | Node.js framework for creating back-end routes              | [Express Documentation](https://expressjs.com/)              |
+| **MongoDB**      | NoSQL database for storing user data and journal entries    | [MongoDB Documentation](https://docs.mongodb.com/)           |
+| **pnpm**         | Fast package manager for efficient dependency management    | [pnpm Documentation](https://pnpm.io/)                        |
+| **VS Code**      | Code editor with customizable extensions                    | [Visual Studio Code Documentation](https://code.visualstudio.com/docs) |
+| **Jodit-Editor** | WYSIWYG editor for formatting journal content               | [Jodit Editor Documentation](https://xdsoft.net/jodit/)       |
+| **Moment.js**    | Library for date and timestamp handling                    | [Moment.js Documentation](https://momentjs.com/docs/)        |
+
 
 ---
 
