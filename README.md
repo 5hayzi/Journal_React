@@ -66,7 +66,8 @@ The primary goal of this project is to build a fully functional notes applicatio
     # or
     pnpm start
     ```
-**Note:** Since the Back-End and Front-End are seperated on different folders you may need to install/add packages seperately by changing the directory to that folder.
+**Note:**
+Since the Back-End and Front-End are seperated on different folders you may need to install/add packages seperately by changing the directory to that folder.
 ---
 
 ## Usage  
