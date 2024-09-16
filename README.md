@@ -1,59 +1,119 @@
-Notes+
-Notes+ is a web-based note-taking application developed as part of the NeoFlux Front-end Internship program. The project serves as a practical learning experience to train and test the skills and knowledge of interns in front-end development, using modern technologies and tools.
+# Notes+  
 
-Objective
-The primary objective of this project is to develop a fully functional notes application where users can create, edit, delete, and manage journal entries. The project introduces key concepts such as state management, theme switching (light/dark mode), and the use of modern front-end technologies.
+**Notes+** is a web-based note-taking application developed as part of the NeoFlux Front-end Internship program. The project serves as a practical learning experience to train and test interns' skills in front-end development using modern technologies and tools.
 
-Features
-Create and Manage Journals: Users can create new journal entries, view saved entries, and edit or delete existing ones.
-Rich Text Formatting: Supports rich text formatting through a WYSIWYG (What You See Is What You Get) editor using the Jodit-Editor library.
-Light/Dark Theme: The application includes a theme toggle that allows users to switch between light and dark modes.
-State Management: Implemented using Redux for managing global states like theme selection, editor content, and journal data.
-Search Functionality: Users can search for specific notes by title or content.
-Responsive Design: The application is fully responsive and optimized for various screen sizes.
+---
 
-Tech Stack
-HTML, CSS, JS: Core technologies for structure, styling, and interactivity.
-React JS: Used for building the UI with reusable components, making the code more organized.
-Node.js: Server-side JavaScript handling requests and responses.
-Vite: Development tool for quick React setup and hot-reloading.
-Tailwind CSS: Utility-first CSS framework for rapid styling directly in JSX.
-Figma: Used to design and prototype the app’s layout before coding.
-React Redux: Manages the global state of the app, making data tracking easier across components.
-Git/GitHub: Version control for tracking changes and sharing code.
-Express JS: Node.js framework for creating back-end routes and handling API requests.
-MongoDB: NoSQL database for storing user data and journal entries.
-pnpm: Fast package manager for efficient library and tool management.
-VS Code: Code editor with customizable extensions for efficient coding.
-Jodit-Editor: WYSIWYG editor for formatting journal content.
-Moment.js: Used for date and timestamp handling.
+## Objective  
+The primary goal of this project is to build a fully functional notes application where users can **create**, **edit**, **delete**, and manage their journal entries. It introduces key concepts like **state management**, **theme switching** (light/dark mode), and **modern front-end technologies**.
 
+---
 
-Installation and Setup
-Clone the repository:
-git clone https://github.com/5hayzi/Journal_React.git
+## Features  
+- **Create and Manage Journals:** Users can create new journal entries, view saved entries, and edit or delete existing ones.
+- **Rich Text Formatting:** Supports rich text formatting through a WYSIWYG editor using the Jodit-Editor library.
+- **Light/Dark Theme:** A theme toggle allows users to switch between light and dark modes.
+- **State Management:** Implemented using Redux for managing global states like theme selection, editor content, and journal data.
+- **Search Functionality:** Users can search for specific notes by title or content.
+- **Responsive Design:** Fully responsive and optimized for various screen sizes.
 
-Navigate into the project directory:
-cd Journal_React
+---
 
-Install dependencies:
-npm install / pnpm add
+## Tech Stack  
 
-Start the development server:
-npm start / pnpm start
+| **Technology**   | **Purpose**                                                |
+|------------------|------------------------------------------------------------|
+| **HTML, CSS, JS**| Core technologies for structure, styling, and interactivity |
+| **React JS**     | UI building with reusable components                       |
+| **Node.js**      | Server-side JavaScript for handling requests and responses  |
+| **Vite**         | Development tool for fast React setup and hot-reloading     |
+| **Tailwind CSS** | Utility-first CSS framework for styling directly in JSX     |
+| **Figma**        | Design and prototyping the app layout                       |
+| **React Redux**  | State management across the application                    |
+| **Git/GitHub**   | Version control and code sharing                           |
+| **Express JS**   | Node.js framework for creating back-end routes              |
+| **MongoDB**      | NoSQL database for storing user data and journal entries    |
+| **pnpm**         | Fast package manager for efficient dependency management    |
+| **VS Code**      | Code editor with customizable extensions                    |
+| **Jodit-Editor** | WYSIWYG editor for formatting journal content               |
+| **Moment.js**    | Library for date and timestamp handling                    |
 
+---
 
+## Installation and Setup  
 
-Usage
-Use the Create Journal page to add new notes with formatted text using the WYSIWYG editor.
-Navigate to the View Notes page to view all saved notes, search, or filter entries.
-Switch between Light/Dark Mode by clicking the theme toggle in the navigation bar.
-Edit/Delete journal entries directly from the notes view page.
-Create a profile by signing up or using any other authentication method
-Log in to your account or update it.
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/5hayzi/Journal_React.git
+    ```
 
-Contributions
-Contributions are welcome! Feel free to fork the repository, submit issues, or create pull requests.
+2. **Navigate into the project directory**:
+    ```bash
+    cd Journal_React
+    ```
 
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
+3. **Install dependencies**:
+    ```bash
+    npm install
+    # or
+    pnpm add
+    ```
+
+4. **Start the development server**:
+    ```bash
+    npm start
+    # or
+    pnpm start
+    ```
+
+---
+
+## Usage  
+- **Create Journal**: Use the "Create Journal" page to add new notes with rich text formatting.
+- **View Notes**: View all saved notes on the "View Notes" page, search, or filter entries.
+- **Theme Toggle**: Switch between Light/Dark Mode using the theme toggle in the navigation bar.
+- **Edit/Delete**: Edit or delete journal entries directly from the notes view page.
+- **Profile Management**: Create a profile by signing up or logging in to manage your account.
+
+---
+
+## Images 
+<div style="display: flex; flex-position: row; justify-content: space-evenly; margin-bottom: 30px;">
+<img src="./App pics/image.png" alt="Homepage" width="500"/>
+<img src="./App pics/image-1.png" alt="alt text" width="500"/> 
+</div>
+
+<div style="display: flex; flex-position: row; justify-content: space-evenly; margin-bottom: 30px;">
+<img src="./App pics/image-2.png" alt="alt text" width="210" height="400"/> 
+<img src="./App pics/image-3.png" alt="alt text" width="210" height="400"/> 
+</div>
+
+<div style="display: flex; flex-position: row; justify-content: space-evenly; margin-bottom: 30px;">
+<img src="./App pics/image-4.png" alt="alt text" width="500"/>
+<img src="./App pics/image-5.png" alt="alt text" width="500"/> 
+</div>
+
+<div style="display: flex; flex-position: row; justify-content: space-evenly; margin-bottom: 30px;">
+<img src="./App pics/image-6.png" alt="alt text" width="210" height="400"/> 
+<img src="./App pics/image-7.png" alt="alt text" width="700"/> 
+</div>
+
+<div style="display: flex; flex-position: row; justify-content: space-evenly; margin-bottom: 30px;">
+<img src="./App pics/image-8.png" alt="alt text" width="500"/> 
+<img src="./App pics/image-9.png" alt="alt text" width="500"/> 
+</div>
+
+---
+
+## Contributions  
+Contributions are welcome! Feel free to:
+- Fork the repository
+- Submit issues
+- Create pull requests
+
+---
+
+## License  
+This project is licensed under the [MIT License](LICENSE) - see the LICENSE file for details.
+
+---
