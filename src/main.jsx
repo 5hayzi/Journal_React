@@ -8,14 +8,14 @@ import {
 import './Styles/index.css'
 import HomePage from './Components/UI/HomePage.jsx';
 import NoteMenu from './Components/Notes/NotesMenu.jsx'
-
 import Access from './Components/Access/Access.jsx';
 import ResetPassword from './Components/Access/ResetPassword.jsx';
 import Error404 from './Components/Error/Error404.jsx';
 import Error500 from './Components/Error/Error500.jsx';
 import NotesEditor from './Components/Notes/NotesEditor.jsx';
 import Settings from './Components/User/Settings.jsx';
-
+import { Provider } from 'react-redux'
+import store from '../src/Redux/store.js'
 
 const router = createBrowserRouter([
   {
@@ -79,7 +79,9 @@ if (localStorage.getItem('theme') === 'dark') {
 }
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <Provider store={store}>
     <RouterProvider router={router}/>
+    </Provider>
   </StrictMode>,
 )
 

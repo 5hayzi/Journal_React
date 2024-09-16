@@ -71,21 +71,20 @@ function SignUp() {
   
   return (
     <>
-      <form className="flex justify-end w-full h-screen font-montserrat overflow-hidden" onSubmit={onSubmit}>
+      <form className="flex justify-end w-full h-screen font-montserrat overflow-hidden dark:bg-slate-800" onSubmit={onSubmit}>
 
       <div className={`flex items-center w-2/4 h-98 flex-col mt-28 -translate-x-full transition-transform duration-500 ${!isOpen ? '!translate-x-0':''} sm:w-full sm:m-0 sm:p-8 sm:mt-5`}>
       
-      <h1 className="text-2xl font-montserrat font-semibold text-center border-b-2 border-black h-10 mb-14 sm:mb-6 sm:h-16">Welcome to your new diary</h1>
-      <div className=" w-2/4 flex flex-col mb-5 sm:w-full" >
-            {/* <div className={`flex flex-col w-full `}> */}
+      <h1 className="text-2xl font-montserrat font-semibold text-center border-b-2 border-black h-10 mb-14 sm:mb-6 sm:h-16 dark:text-white dark:border-white">Welcome to your new diary</h1>
+      <div className=" w-2/4 flex flex-col mb-5 sm:w-full dark:text-white" >
             <div className="w-full flex flex-row justify-between">
-            <div className="flex flex-col w-5/12 text-nowrap">
+            <div className="flex flex-col w-5/12 text-nowrap ">
             <label htmlFor="firstname_textarea">First Name</label>
             <input
               type="text"
               name="first_name"
               id="firstname_textarea"
-              className="text-left h-9 text-lg p-1 mb-3 rounded border border-gray-300" required
+              className="text-left h-9 text-lg p-1 mb-3 rounded border border-gray-300 dark:text-black" required
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             />
@@ -96,7 +95,7 @@ function SignUp() {
               type="text"
               name="second_name"
               id="secondname_textarea"
-              className="text-left h-9 text-lg p-1 mb-3 rounded border border-gray-300" required
+              className="text-left h-9 text-lg p-1 mb-3 rounded border border-gray-300 dark:text-black" required
               value={secondName}
               onChange={(e) => setSecondName(e.target.value)}
             />
@@ -107,7 +106,7 @@ function SignUp() {
               type="email"
               name="email"
               id="email_textarea"
-              className="text-left h-9 text-lg p-1 mb-3 rounded border border-gray-300" required
+              className="text-left h-9 text-lg p-1 mb-3 rounded border border-gray-300 dark:text-black" required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -116,18 +115,13 @@ function SignUp() {
               type="password"
               name="new_password"
               id="new_password"
-              className="text-left h-9 text-lg p-1 mb-3  rounded border border-gray-300"  required
+              className="text-left h-9 text-lg p-1 mb-3  rounded border border-gray-300 dark:text-black"  required
               value={password}
               onChange={(e) => {setPassword(e.target.value);
                             validatePassword(e.target.value);
               }}
             />
-            {/* {
-              errors.password.map((e, index) => {
-                return <small key={index} className='text-red-500'>{e}</small>
-              })
-            } */}
-              <ul className="max-w-md space-y-1 text-gray-500 list-inside text-x mb-3">
+              <ul className="max-w-md space-y-1 text-gray-500 list-inside text-x mb-3 dark:text-gray-400">
                   <li className="flex items-center">
                       <svg className={`w-3.5 h-3.5 me-2 ${isValid || charValid.passLength? 'text-green-500' : 'text-gray-500'} flex-shrink-0`}  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
@@ -153,7 +147,7 @@ function SignUp() {
               type="password"
               name="password_check"
               id="password_check"
-              className={`text-left h-9 text-lg p-1 mb-4 rounded border ${
+              className={`text-left h-9 text-lg p-1 mb-4 rounded border dark:text-black ${
                 isMatch ? 'border-gray-300' : 'border-red-500'}`}
               required
               value={passCheck}
@@ -187,26 +181,26 @@ function SignUp() {
         
       </div>
 
-      <h1 className="text-l  text-center border-b-2 border-black mb-6">Or</h1>
+      <h1 className="text-l  text-center border-b-2 border-black mb-6 dark:text-white dark:border-white">Or</h1>
       <div className="flex justify-evenly items-center w-3/6 mb-6 sm:w-full">
-            <Button className="bg-gray-200 !w-24">
+            <Button className="bg-gray-200 !w-24 dark:bg-gray-400">
               <img src={googleLogo} title="Google" className="w-7"/>
             </Button>
-            <Button className="bg-gray-200 !w-24">
+            <Button className="bg-gray-200 !w-24 dark:bg-gray-400">
               <img src={facebookLogo} title="Facebook" className="w-7"/>
             </Button>
-            <Button className="bg-gray-200 !w-24">
+            <Button className="bg-gray-200 !w-24 dark:bg-gray-400">
               <img src={twitterLogo} title="Twitter" className="w-7"/>
             </Button>
           </div>
       </div>
 
       <div className={`fixed z-0 flex items-center w-2/4 h-98 flex-col mt-28 translate-x-full transition-transform duration-500 ${isOpen ? '!-translate-x-full sm:!translate-x-0':''} sm:w-full sm:m-0 sm:p-8 sm:mt-5`}>
-      <h1 className="text-2xl font-montserrat font-semibold text-center border-b-2 border-black h-10 mb-14 sm:mb-6 sm:h-16">One last step....</h1>
-      <div className=" w-2/4 flex flex-col mb-5 sm:w-full gap-1" onSubmit={onSubmit}>
+      <h1 className="text-2xl font-montserrat font-semibold text-center border-b-2 border-black h-10 mb-14 sm:mb-6 sm:h-16 dark:text-white dark:border-white">One last step....</h1>
+      <div className=" w-2/4 flex flex-col mb-5 sm:w-full gap-1 text-white" onSubmit={onSubmit}>
             <label htmlFor="image_area">Add Image</label>
-            <div className="flex flex-col w-full rounded border p-2 mb-16">
-            <img src={image} htmlFor='image_area' alt='image' className='w-36 h-36 text-center rounded-full border border-gray-300 mb-3 self-center'/>
+            <div className="flex flex-col w-full rounded border p-2 mb-16 dark:border-gray-500">
+            <img src={image} htmlFor='image_area' alt='image' className='w-36 h-36 text-center rounded-full border border-gray-300 mb-3 self-center dark:border-gray-500'/>
             <input
               type="file"
               name="image_area"
@@ -273,7 +267,7 @@ function SignUp() {
       </div>
       </div>
 
-      <div className="flex w-2/4 z-20 h-98 bg-blue-500 rounded-xl self-center mr-2 sm:hidden justify-center relative" >
+      <div className="flex w-2/4 z-20 h-98 bg-blue-500 rounded-xl self-center mr-2 sm:hidden justify-center relative dark:bg-blue-800" >
         <h1 className="w-1/4 text-7xl text-white absolute top-10 left-16">Start writing today</h1>
         <img className="w-2/4 h-2/4 bg-contain bg-center absolute top-72 left-20" src={signupGif}/>
         <div className="w-2/4 min-h-40 bg-gray-600 bg-opacity-40 absolute top-64 right-10 rounded-lg p-3"> 

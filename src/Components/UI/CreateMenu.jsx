@@ -37,7 +37,7 @@ function CreateMenu(props) {
   }
 
   return (
-    <div className='w-screen h-screen backdrop-blur-lg absolute flex items-center justify-center'>
+    <div className='w-screen h-screen backdrop-blur-lg absolute flex items-center justify-center z-10'>
     <form className="w-2/6 bg-white rounded shadow-lg z-10 font-montserrat flex flex-col gap-4 p-5 sm:w-2/3 active:backdrop-blur-3xl" onSubmit={onSubmit}>
           <div className='flex flex-col gap-1'>
           <label htmlFor="create_title" className="text-lg">Journal page title </label>

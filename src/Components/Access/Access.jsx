@@ -8,7 +8,7 @@ function Access() {
 
     return (
         <div>
-            <div className="hidden sm:flex">
+            <div className="hidden sm:flex dark:bg-slate-800">
                 <NavBar />
             </div>
             

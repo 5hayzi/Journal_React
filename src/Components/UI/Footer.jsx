@@ -3,7 +3,7 @@ import { PhoneArrowUpRightIcon, AtSymbolIcon,   } from '@heroicons/react/24/soli
 
 export default function Footer() {
   return (
-    <div className='w-full h-[15%] flex flex-col bg-blue-300 pt-12 px-28 font-montserrat justify-between sm:h-fit sm:px-6 sm:pt-3 rounded-t-3xl dark:bg-[#3d54d662]'>
+    <div className='w-full h-[25rem] flex flex-col bg-blue-300 pt-12 px-28 font-montserrat justify-between sm:h-fit sm:px-6 sm:pt-3 rounded-t-3xl dark:bg-[#3d54d662]'>
     <div className='w-full h-11/12 flex flex-row justify-between sm:flex-col'>
     <div className="flex w-1/6 flex-col items-start gap-4 sm:w-full sm:gap-2">
         <button onClick={()=>

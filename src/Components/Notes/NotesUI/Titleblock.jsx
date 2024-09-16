@@ -36,7 +36,7 @@ function Titleblock(props) {
         </div>
     </div>
 
-    <div className='w-[15%] min-h-full bg-primary-b rounded flex flex-col font-montserrat sm:hidden gap-2 py-2 dark:bg-slate-900'>
+    <div className='w-[15%] min-h-full bg-primary-b rounded flex flex-col font-montserrat sm:hidden gap-2 py-2 dark:bg-gradient-to-tr from-[#474747] via-[#3d3d3d] to-[#292929]'>
         <Link to="/view-notes/editor" className="flex flex-1 flex-col justify-between">
         <div className="size-fit flex flex-col items-start px-3 pb-2">
         <h1 className="text-2xl font-medium text-start text-wrap dark:text-[#dddddd]" >{props.title}</h1>

@@ -62,10 +62,10 @@ export default function TwoFactorAuthentication() {
         })
     })                       
   return (
-    <div className="max-w-md mx-auto text-center bg-white px-4 sm:px-8 py-10">
+    <div className="max-w-md mx-auto text-center px-4 sm:px-8 py-10">
     <header className="mb-8">
-        <h1 className="text-2xl font-bold mb-1">Email Verification</h1>
-        <p className="text-[15px] text-slate-500">Enter the 6-digit verification code that was sent to your email.</p>
+        <h1 className="text-2xl font-bold mb-1 dark:text-white">Email Verification</h1>
+        <p className="text-[15px] text-slate-500 dark:text-slate-400">Enter the 6-digit verification code that was sent to your email.</p>
     </header>
     <form id="otp-form">
         <div className="flex items-center justify-center gap-3">
@@ -103,7 +103,7 @@ export default function TwoFactorAuthentication() {
                 Account</button>
         </div>
     </form>
-    <div className="text-sm text-slate-500 mt-4">Didn`t receive code? <a className="font-medium text-indigo-500 hover:text-indigo-600" href="#0">Resend</a></div>
+    <div className="text-sm text-slate-500 mt-4 dark:text-slate-400">Didn`t receive code? <a className="font-medium text-indigo-500 hover:text-indigo-600" href="#0">Resend</a></div>
 </div>
 
   );

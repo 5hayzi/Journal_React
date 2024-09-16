@@ -68,7 +68,8 @@ function HomePage() {
               root.scrollTo({ top: root.offsetTop, behavior: 'smooth' })}}>
       <ArrowUpIcon className='size-7 fill-white mx-auto my-auto dark:fill-black'/>
     </button>
-    <Footer/>
+    <div className="h-fit">
+    <Footer/></div>
     </div>
     
     </>
