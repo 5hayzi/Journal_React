@@ -1,4 +1,5 @@
 import { PencilSquareIcon } from "@heroicons/react/20/solid";
+import { useSelector } from "react-redux";
 
 import Button from "../UI/Button";
 import { useState } from "react";

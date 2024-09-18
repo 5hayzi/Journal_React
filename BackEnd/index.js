@@ -3,24 +3,22 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
+import helmet from 'helmet'
+import cors from 'cors'
 
 dotenv.config();
 
-mongoose
-.connect(process.env.Mongo)
-.then(()=>{
-    console.log("Connected to MongoDb"); 
-})
-.catch((err)=>{
-    console.log(err);  
-})
+
 
 const app = express();
 
 app.use(express.json());
+app.use(helmet());
+app.use(cors());
 
-app.listen(3000,()=>{
-    console.log("Server on 3000 port")
+app.use((req, res, next)=>{
+    console.log(req.path, req.method);
+    next()
 })
 
 app.use("/api/user",userRouter);
@@ -35,3 +33,15 @@ app.use((err,req, res, next)=>{
         message,
     });
 });
+
+mongoose
+    .connect(process.env.Mongo)
+    .then(()=>{
+        console.log("Connected to MongoDb");
+        app.listen(3000,()=>{
+            console.log("Server on 3000 port")
+        }) 
+    })
+    .catch((err)=>{
+        console.log(err);  
+    })

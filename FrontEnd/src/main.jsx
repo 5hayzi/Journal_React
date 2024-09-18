@@ -15,7 +15,9 @@ import Error500 from './Components/Error/Error500.jsx';
 import NotesEditor from './Components/Notes/NotesEditor.jsx';
 import Settings from './Components/User/Settings.jsx';
 import { Provider } from 'react-redux'
-import store from '../src/Redux/store.js'
+import {store} from '../src/Redux/store.js'
+import { persistor } from '../src/Redux/store.js'
+import { PersistGate } from 'redux-persist/integration/react';
 
 const router = createBrowserRouter([
   {
@@ -35,15 +37,15 @@ const router = createBrowserRouter([
     element:<NotesEditor/>
     },
   {
-  path:"/access/log-in",
+  path:"/access/login",
   element:<Access/>
   },
   {
-  path:"/access/sign-up",
+  path:"/access/signup",
   element:<Access/>
   },
   {
-  path:"/access/log-in/reset-password",
+  path:"/access/login/reset-password",
   element:<ResetPassword/>
   },
   {
@@ -80,7 +82,9 @@ if (localStorage.getItem('theme') === 'dark') {
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-    <RouterProvider router={router}/>
+      <PersistGate loading={null} persistor={persistor}>
+        <RouterProvider router={router}/>
+      </PersistGate>
     </Provider>
   </StrictMode>,
 )

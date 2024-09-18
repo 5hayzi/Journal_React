@@ -12,9 +12,9 @@ function Access() {
                 <NavBar />
             </div>
             
-            {location.pathname === '/access/log-in' ? (
+            {location.pathname === '/access/login' ? (
                 <Login />
-            ) : location.pathname === '/access/sign-up' ? (
+            ) : location.pathname === '/access/signup' ? (
                 <SignUp />
             ) : null}
         </div>

@@ -25,7 +25,7 @@ function Login() {
     }
     e.preventDefault();
     try {
-      const res = await fetch('/api/auth/LogIn', {
+      const res = await fetch('/api/auth/login', {
       method:'POST',
       headers:{
         'Content-Type':'application/json',
@@ -125,9 +125,9 @@ const showPassword = ()=>{
 
           <div className="flex flex-col items-center justify-around">
             <button className="text-blue-900 mt-5 dark:text-blue-400">
-              <Link to ="/access/log-in/reset-password">Forgot Password?</Link></button>
+              <Link to ="/access/login/reset-password">Forgot Password?</Link></button>
             <span className="mt-6 dark:text-white">
-              New here? <Link to="/access/sign-up" className="text-blue-500">Sign Up</Link>
+              New here? <Link to="/access/signup" className="text-blue-500">Sign Up</Link>
             </span>
           </div>
         </div>
