@@ -15,7 +15,7 @@ export default function NotesEditor() {
   const captureRef = useRef();
 
   const dispatch = useDispatch();
-
+  
   const darkMode = useSelector((state) => state.theme.value);
 
   // Jodit Editor Configuration

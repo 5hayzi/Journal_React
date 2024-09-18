@@ -8,9 +8,6 @@ import { ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/solid'
 import Button from '../UI/Button'
 import { Link } from 'react-router-dom'
 
-
-
-
 function SignUp() {
   const[isOpen, setIsOpen] = useState(false);
   const[firstName, setFirstName] = useState('');
@@ -22,20 +19,16 @@ function SignUp() {
   const[image, setImage] = useState(null);
   const[twoFactor, setTwoFactor] = useState(false);
   const[agreeCheck, setAgreeCheck] = useState(false);
-  // const[errors, setErrors] =useState({
-  //   password:[],
-  // });
+  const [isValid, setIsValid] = useState(false);
   const [charValid, setCharValid] = useState({
     uppercase: false ,
     specialChar: false ,
     passLength: false
   });
 
-  const [isValid, setIsValid] = useState(false);
-
   const validatePassword = (pwd) => {
-    const uppercasePattern = /[A-Z]/;               // Checks for at least one uppercase letter
-    const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/; // Checks for at least one special character
+    const uppercasePattern = /[A-Z]/;
+    const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/;
     const testUpperCase = uppercasePattern.test(pwd);
     const testSpecialChar = specialCharPattern.test(pwd);
     const testPassLength = (pwd.length >= 10);
@@ -53,17 +46,31 @@ function SignUp() {
       setIsValid(false)
     }
   }
-
-  console.log(isMatch);
-  console.log(isValid);
-  console.log(isOpen);
   
-
-  const onSubmit = (e)=>{
+  const onSubmit = async (e)=>{
+    const formData = {
+      name: `${firstName} ${secondName}`,
+      email: email,
+      password: password,
+      img: image,
+      twoFactor: twoFactor,
+    }
     e.preventDefault();
-    console.log("this");  
+    try {
+      const res = await fetch('/api/auth/SignUp', {
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+      },
+      body: JSON.stringify(formData),
+     });
+    } catch (error) {
+      console.log(error);  
+    }
+     
   }
-
+  
+  
   useEffect(() => {
     (passCheck === password)? setIsMatch(true) : setIsMatch(false);
   }, [password,passCheck]);
@@ -168,12 +175,12 @@ function SignUp() {
             focus:ring-indigo-300  
             focus-visible:ring-indigo-300
             self-end"
-          // disabled={isMatch == false && isValid == false} 
+          disabled={isMatch == false && isValid == false} 
           onClick={()=>{if (isMatch && isValid){
               setIsOpen(true);
           }
         else{
-            setIsOpen(true);
+            setIsOpen(false);
         }}}
         >
           <ArrowRightIcon className='fill-white w-5'/>
