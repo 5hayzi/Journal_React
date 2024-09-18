@@ -1,20 +1,54 @@
-import { Link } from 'react-router-dom'
-import backgroundLogin from '../../assets/Images/background-login.svg'
-import facebookLogo from '../../assets/Images/facebook-logo.svg'
-import googleLogo from '../../assets/Images/google-logo.svg'
-import twitterLogo from '../../assets/Images/twitter-logo.svg'
-import TwoFactorAuthentication from './TwoFactorAuthentication'
-import { useState } from 'react'
-import { ArrowLeftIcon } from "@heroicons/react/24/solid"
-import Button from '../UI/Button'
+import { Link, useNavigate } from 'react-router-dom';
+import backgroundLogin from '../../assets/Images/background-login.svg';
+import facebookLogo from '../../assets/Images/facebook-logo.svg';
+import googleLogo from '../../assets/Images/google-logo.svg';
+import twitterLogo from '../../assets/Images/twitter-logo.svg';
+import TwoFactorAuthentication from './TwoFactorAuthentication';
+import { useState } from 'react';
+import { ArrowLeftIcon } from "@heroicons/react/24/solid";
+import Button from '../UI/Button';
+import {useDispatch} from 'react-redux';
+import {setValue} from '../../Redux/react_component/UserData.js';
 
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const[isEnabled, setIsEnabled] = useState(false);
+  const [showPass, setShowPass] = useState(false);
+  const dispatch  = useDispatch();
+  const navigate = useNavigate();
 
-  const Enable = (e)=>{
-      e.preventDefault();
-      !isEnabled? setIsEnabled(true): setIsEnabled(false)
+  const handleChange = async (e)=>{
+    const formData = {
+     email: email,
+     password: password
+    }
+    e.preventDefault();
+    try {
+      const res = await fetch('/api/auth/LogIn', {
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+      },
+      body: JSON.stringify(formData),
+     });
+     const data = await res.json();
+     if(data.success === false){
+        return;
+     }
+     dispatch(setValue(data));
+      navigate('/');
+    } catch (error) {
+      console.log(error);  
+    }
   }
+  const Enable = (e)=>{
+    e.preventDefault();
+    !isEnabled? setIsEnabled(true): setIsEnabled(false)
+}
+const showPassword = ()=>{
+  setShowPass(!showPass);
+}
   
   return (
     <>
@@ -29,22 +63,29 @@ function Login() {
             <h1>Welcome Back!</h1>
             <hr className="h-0.5 bg-black mt-2 mb-4 w-full"/>
           </div>
-          <form className="flex w-3/6 flex-col px-8 sm:px-2 sm:w-3/4 dark:text-white">
-            <label htmlFor="username_textarea">Username or Email</label>
+          <form className="flex w-3/6 flex-col px-8 sm:px-2 sm:w-3/4 dark:text-white" onSubmit={handleChange}>
+            <label htmlFor="username_textarea">Enter Email</label>
             <input
               type="text"
               name="username"
               id="username_textarea"
               className="text-left h-9 text-lg p-1 mb-4 rounded border border-gray-300 dark:text-black"
+              value={email}
+              onChange={(e)=>{setEmail(e.target.value)}}
+              required
             />
 
-            <label htmlFor="password_textarea dark:text-white">Password</label>
+            <label htmlFor="password_textarea dark:text-white">Enter Password</label>
             <input
-              type="text"
+              type={`${!showPass? 'password': 'text'}`}
               name="password"
               id="password_textarea"
+              value={password}
+              onChange={(e)=>{setPassword(e.target.value)}}
               className="text-left h-9 text-lg p-1 mb-4 rounded border border-gray-300 dark:text-black"
+              required
             />
+            <button className="text-sm self-end dark:text-white" type="button" onClick={showPassword}>Show Password</button>
 
             <div className="flex items-center">
               <input
@@ -63,7 +104,7 @@ function Login() {
                 focus:ring-indigo-300  
                 focus-visible:ring-indigo-300
                 !w-3/4"
-                onClick={Enable}>
+                type='submit'>
                 Log In
               </Button>
               

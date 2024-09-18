@@ -1,9 +1,7 @@
 import NavBar from "../UI/NavBar";
-import { useState } from "react";
 import ProfilePage from "./Profilepage";
 import General from "./General";
 import Notification from "./Notification";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Delete from "./Delete";
 import { useLocation } from "react-router-dom";

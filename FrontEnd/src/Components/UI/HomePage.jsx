@@ -10,7 +10,7 @@ import AboutSection from './AboutSection';
 
 
 function HomePage() {
-  console.log(localStorage.getItem('theme'));
+
   
   return (
     <>
