@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { apiUrl } from '../../global';
 
 export const UserData = createSlice({
   name: 'UserData',
@@ -17,15 +16,24 @@ export const UserData = createSlice({
   reducers: {
     setValue: (state, action) => {
         const { name, email, password, img, twoFactor, gender } = action.payload;
-      const image = `${apiUrl}${img}`;
       state.name = name;
       state.email = email;
       state.password = password;
-      state.img = image;
+      state.img = img;
       state.twoFactor = twoFactor;
       state.gender = gender;
       state.loggedIn = true;
     },
+    setUpdate: (state, action) => {
+      const { name, email, password, img, twoFactor, gender } = action.payload;
+    state.name = name;
+    state.email = email;
+    state.password = password;
+    state.img = img;
+    state.twoFactor = twoFactor;
+    state.gender = gender;
+    state.loggedIn = true;
+  },
     setRemember: (state, action)=>{
       state.rememberMe = action.payload;
     }

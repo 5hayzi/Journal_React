@@ -88,7 +88,7 @@ export default function SideNavBar() {
             <Link to="/settings/account" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white" onClick={()=>setIsOpen(!isOpen)}>
                
                <span className="flex-1 ms-3 whitespace-nowrap">User</span>
-               <img src={image} className='size-11 rounded-full border border-black flex items-center justify-center '/>
+               <img crossOrigin="anonymous" src={`http://localhost:3000${image}`} className={`size-11 rounded-full flex items-center justify-center`}/>
             </Link>}
          </li>
         

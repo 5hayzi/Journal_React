@@ -9,7 +9,8 @@ export default function ProfilePage() {
   const email = useSelector((state)=>state.userData.email)
   const twofactor = useSelector((state)=>state.userData.twoFactor)
   const gender = useSelector((state)=>state.userData.gender)
-  const image = useSelector((state)=>state.userData.img)
+  const img = useSelector((state)=>state.userData.img)
+  const [image, setImage] = useState(`http://localhost:3000${img}`)
   const [enable, setEnabled] = useState(false);
   return (
     <>
@@ -23,7 +24,7 @@ export default function ProfilePage() {
               <PencilSquareIcon className="w-5 fill-white"/>
               Edit</Button>
       <div className=" flex flex-row self-center py-4">
-        <img src={image} alt="" className="w-32 h-32 rounded-full border-2 border-black dark:border-[#dddddd]"/>
+        <img crossOrigin="anonymous" src={image} alt="" className={`w-32 h-32 rounded-full ${ img == null ? 'img border-2 border-black dark:border-[#dddddd]':''}`}/>
         <input type="file"  className="hidden" id='img'/>
         {enable &&
         <label htmlFor="img" className="flex self-end"><PencilSquareIcon className="w-6 fill-black dark:fill-[#dddddd]"/></label>

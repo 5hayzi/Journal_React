@@ -9,7 +9,6 @@ function AccountDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const loggedIn = useSelector((state)=>state.userData.loggedIn);
   const image = useSelector((state)=>state.userData.img);
-  console.log(image);
   
   const theme = useSelector((state)=>state.theme.value);
   const dispatch = useDispatch()
@@ -22,7 +21,7 @@ function AccountDropdown() {
   return (
     <div className="relative">
       
-      {(loggedIn)&&<img src="../../../../BackEnd/uploads/img-1726777752644-325916741.jpg" onClick={toggleDropdown} className='size-9 rounded-full border border-black flex items-center justify-center '/>}
+      {(loggedIn)&&<img crossOrigin="anonymous" src={`http://localhost:3000${image}`} onClick={toggleDropdown} className='size-9 rounded-full flex items-center justify-center '/>}
       {(!loggedIn)&& 
       <div className="size-9 rounded-full border border-black flex justify-center items-center">
       <UserIcon 
