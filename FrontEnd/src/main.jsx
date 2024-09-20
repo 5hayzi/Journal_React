@@ -18,6 +18,7 @@ import { Provider } from 'react-redux'
 import {store} from '../src/Redux/store.js'
 import { persistor } from '../src/Redux/store.js'
 import { PersistGate } from 'redux-persist/integration/react';
+import { useSelector} from 'react-redux';
 
 const router = createBrowserRouter([
   {
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
   {
     path:"/view-notes/editor",
     element:<NotesEditor/>
-    },
+  },
   {
   path:"/access/login",
   element:<Access/>
@@ -79,6 +80,7 @@ if (localStorage.getItem('theme') === 'dark') {
 } else {
   document.documentElement.classList.remove('dark');
 }
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>

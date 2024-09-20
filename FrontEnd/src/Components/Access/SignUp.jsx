@@ -1,12 +1,11 @@
 import {useState, useEffect} from 'react'
-import facebookLogo from '../../assets/Images/facebook-logo.svg'
-import googleLogo from '../../assets/Images/google-logo.svg'
-import twitterLogo from '../../assets/Images/twitter-logo.svg'
 import signupGif from '../../assets/Images/typing.gif'
 import { TypeAnimation } from 'react-type-animation';
 import { ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/solid'
 import Button from '../UI/Button'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate} from 'react-router-dom'
+import axios from 'axios';
+import Auth from './Auth'
 
 function SignUp() {
   const[isOpen, setIsOpen] = useState(false);
@@ -17,21 +16,25 @@ function SignUp() {
   const[passCheck, setPassCheck] = useState('');
   const [isMatch, setIsMatch] = useState();
   const[image, setImage] = useState(null);
+  const[viewImage, setViewImage] = useState(null);
   const[twoFactor, setTwoFactor] = useState(false);
   const[agreeCheck, setAgreeCheck] = useState(false);
   const [isValid, setIsValid] = useState(false);
+  const [gender, setGender] = useState('');
   const [charValid, setCharValid] = useState({
     uppercase: false ,
     specialChar: false ,
     passLength: false
   });
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const validatePassword = (pwd) => {
     const uppercasePattern = /[A-Z]/;
     const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/;
     const testUpperCase = uppercasePattern.test(pwd);
     const testSpecialChar = specialCharPattern.test(pwd);
-    const testPassLength = (pwd.length >= 10);
+    const testPassLength = (pwd.length >= 8);
 
     setCharValid({
       uppercase : testUpperCase ,
@@ -53,23 +56,26 @@ function SignUp() {
       email: email,
       password: password,
       img: image,
+      gender: gender,
       twoFactor: twoFactor,
     }
-    e.preventDefault();
-    try {
-      const res = await fetch('/api/auth/SignUp', {
-      method:'POST',
+    e.preventDefault(); 
+     axios.post('/api/auth/signup',formData,{
       headers:{
-        'Content-Type':'application/json',
-      },
-      body: JSON.stringify(formData),
-     });
-    } catch (error) {
-      console.log(error);  
-    }
-     
+        "Content-Type":"application/json"
+      }
+     })
+     .then((res)=>{
+      console.log(res);
+     })
+     .catch((error)=>{
+      const {res} = error;
+      console.log(error);
+      
+     })
   }
   
+  console.log(loading);
   
   useEffect(() => {
     (passCheck === password)? setIsMatch(true) : setIsMatch(false);
@@ -78,7 +84,7 @@ function SignUp() {
   
   return (
     <>
-      <form className="flex justify-end w-full h-screen font-montserrat overflow-hidden dark:bg-slate-800" onSubmit={onSubmit}>
+      <form className="flex justify-end w-full h-screen font-montserrat overflow-hidden dark:bg-slate-800" onSubmit={onSubmit} onChange={()=>setLoading(false)}>
 
       <div className={`flex items-center w-2/4 h-98 flex-col mt-28 -translate-x-full transition-transform duration-500 ${!isOpen ? '!translate-x-0':''} sm:w-full sm:m-0 sm:p-8 sm:mt-5`}>
       
@@ -133,7 +139,7 @@ function SignUp() {
                       <svg className={`w-3.5 h-3.5 me-2 ${isValid || charValid.passLength? 'text-green-500' : 'text-gray-500'} flex-shrink-0`}  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                       </svg>
-                      At least 10 characters
+                      At least 8 characters
                   </li>
                   <li className="flex items-center">
                       <svg className={`w-3.5 h-3.5 me-2 ${isValid || charValid.uppercase ? 'text-green-500' : 'text-gray-500'} flex-shrink-0`}  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -169,6 +175,7 @@ function SignUp() {
           )}
         
         <Button
+          type='button'
           className="
             bg-indigo-500
             hover:bg-indigo-600 
@@ -189,46 +196,48 @@ function SignUp() {
       </div>
 
       <h1 className="text-l  text-center border-b-2 border-black mb-6 dark:text-white dark:border-white">Or</h1>
-      <div className="flex justify-evenly items-center w-3/6 mb-6 sm:w-full">
-            <Button className="bg-gray-200 !w-24 dark:bg-gray-400">
-              <img src={googleLogo} title="Google" className="w-7"/>
-            </Button>
-            <Button className="bg-gray-200 !w-24 dark:bg-gray-400">
-              <img src={facebookLogo} title="Facebook" className="w-7"/>
-            </Button>
-            <Button className="bg-gray-200 !w-24 dark:bg-gray-400">
-              <img src={twitterLogo} title="Twitter" className="w-7"/>
-            </Button>
-          </div>
+      <Auth/>
+
       </div>
 
       <div className={`fixed z-0 flex items-center w-2/4 h-98 flex-col mt-28 translate-x-full transition-transform duration-500 ${isOpen ? '!-translate-x-full sm:!translate-x-0':''} sm:w-full sm:m-0 sm:p-8 sm:mt-5`}>
       <h1 className="text-2xl font-montserrat font-semibold text-center border-b-2 border-black h-10 mb-14 sm:mb-6 sm:h-16 dark:text-white dark:border-white">One last step....</h1>
-      <div className=" w-2/4 flex flex-col mb-5 sm:w-full gap-1 text-white" onSubmit={onSubmit}>
+      <div className=" w-2/4 flex flex-col mb-5 sm:w-full gap-1 dark:text-white" onSubmit={onSubmit}>
             <label htmlFor="image_area">Add Image</label>
-            <div className="flex flex-col w-full rounded border p-2 mb-16 dark:border-gray-500">
-            <img src={image} htmlFor='image_area' alt='image' className='w-36 h-36 text-center rounded-full border border-gray-300 mb-3 self-center dark:border-gray-500'/>
+            <label htmlFor="image_area">
+            <div className="flex flex-col w-full rounded border p-2 mb-7 dark:border-gray-500">
+            <img src={viewImage} htmlFor='image_area' alt='image' className='w-36 h-36 text-center rounded-full border border-gray-300 mb-3 self-center dark:border-gray-500'/>
             <input
               type="file"
               name="image_area"
               id="image_area"
               className="text-left text-sm" 
+              hidden
               required
               accept="image/*"
               onChange={(e)=>{
+                setImage(e.target.files[0]);
                 const file = e.target.files[0];
                 if (file) {
-                  setImage(URL.createObjectURL(file));
+                  setViewImage(URL.createObjectURL(file));
                 }}}
             />
-            
+            </div></label>
+
+            <div className="w-full dark:text-white flex justify-between mb-7">
+            <label htmlFor="gender">Gender:</label>
+              <select name="Gender" id="gender" className='bg-gray-300 p-1 rounded flex ss dark:bg-gray-600' onChange={(e)=>setGender(e.target.value)}>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Prefer Not to say">Prefer Not to say</option>
+              </select>
             </div>
             <div className="flex items-center">
               <input
                 type="checkbox"
                 name="two_factor_check"
                 id="two_factor_check"
-                className="rounded mr-2"
+                className="rounded mr-2 "
                 onChange={()=>setTwoFactor(!twoFactor)}
               />
               <label htmlFor="two_factor_check">Enable Two Factor Authentication</label>
@@ -246,6 +255,7 @@ function SignUp() {
             </div>
           <div className="flex flex-row w-full justify-between items-center mt-2">
           <Button
+          type='button'
           className="
             bg-red-500
             hover:bg-red-600 
@@ -264,7 +274,7 @@ function SignUp() {
             hover:bg-indigo-600 
             focus:ring-indigo-300  
             focus-visible:ring-indigo-300"
-          disabled={!agreeCheck} 
+          disabled={!agreeCheck || loading} 
           onClick={()=>console.log("this is accepatbel")
           }
         >

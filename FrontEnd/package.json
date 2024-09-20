@@ -13,6 +13,7 @@
     "@headlessui/react": "^2.1.5",
     "@heroicons/react": "^2.1.5",
     "@reduxjs/toolkit": "^2.2.7",
+    "axios": "^1.7.7",
     "html2canvas": "^1.4.1",
     "jodit-react": "^4.1.2",
     "moment": "^2.30.1",

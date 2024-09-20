@@ -1,14 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
 import backgroundLogin from '../../assets/Images/background-login.svg';
-import facebookLogo from '../../assets/Images/facebook-logo.svg';
-import googleLogo from '../../assets/Images/google-logo.svg';
-import twitterLogo from '../../assets/Images/twitter-logo.svg';
 import TwoFactorAuthentication from './TwoFactorAuthentication';
 import { useState } from 'react';
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import Button from '../UI/Button';
 import {useDispatch} from 'react-redux';
 import {setValue} from '../../Redux/react_component/UserData.js';
+import Auth from './Auth.jsx';
+import axios from 'axios';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -17,6 +16,7 @@ function Login() {
   const [showPass, setShowPass] = useState(false);
   const dispatch  = useDispatch();
   const navigate = useNavigate();
+  const [credentials, setCredentials] = useState(true);
 
   const handleChange = async (e)=>{
     const formData = {
@@ -34,6 +34,7 @@ function Login() {
      });
      const data = await res.json();
      if(data.success === false){
+      setCredentials(false);
         return;
      }
      dispatch(setValue(data));
@@ -41,6 +42,20 @@ function Login() {
     } catch (error) {
       console.log(error);  
     }
+    // axios.post('/api/auth/login',formData,{
+    //   headers:{
+    //     "Content-Type":"multipart/form-data"
+    //   }
+    //  })
+    //  .then((res)=>{
+      
+    //   console.log(res);
+    //  })
+    //  .catch((error)=>{
+    //   const {res} = error;
+    //   console.log(error);
+      
+    //  })
   }
   const Enable = (e)=>{
     e.preventDefault();
@@ -64,14 +79,17 @@ const showPassword = ()=>{
             <hr className="h-0.5 bg-black mt-2 mb-4 w-full"/>
           </div>
           <form className="flex w-3/6 flex-col px-8 sm:px-2 sm:w-3/4 dark:text-white" onSubmit={handleChange}>
+          {!credentials && <span className='text-sm text-[red] self-end'>Wrong Credentials</span>}
             <label htmlFor="username_textarea">Enter Email</label>
             <input
               type="text"
               name="username"
               id="username_textarea"
-              className="text-left h-9 text-lg p-1 mb-4 rounded border border-gray-300 dark:text-black"
+              className={`text-left h-9 text-lg p-1 mb-4 rounded border ${credentials? 'border-gray-300':'border-[red]'} dark:text-black`}
               value={email}
-              onChange={(e)=>{setEmail(e.target.value)}}
+              onChange={(e)=>{setEmail(e.target.value)
+                setCredentials(true);
+              }}
               required
             />
 
@@ -81,8 +99,10 @@ const showPassword = ()=>{
               name="password"
               id="password_textarea"
               value={password}
-              onChange={(e)=>{setPassword(e.target.value)}}
-              className="text-left h-9 text-lg p-1 mb-4 rounded border border-gray-300 dark:text-black"
+              onChange={(e)=>{setPassword(e.target.value)
+                setCredentials(true);
+              }}
+              className={`text-left h-9 text-lg p-1 mb-4 rounded border ${credentials? 'border-gray-300':'border-[red]'} dark:text-black`}
               required
             />
             <button className="text-sm self-end dark:text-white" type="button" onClick={showPassword}>Show Password</button>
@@ -96,7 +116,6 @@ const showPassword = ()=>{
               />
               <label htmlFor="rememberCheck">Remember me</label>
             </div>
-
             <div className="flex justify-center mt-6 mb-8 w-full">
               <Button className="
                 bg-indigo-500
@@ -111,17 +130,7 @@ const showPassword = ()=>{
             </div>
           </form>
 
-          <div className="flex justify-between items-center w-[40%] sm:w-[70%] mb-6">
-            <Button className="bg-gray-200 !w-20 dark:bg-gray-400">
-              <img src={googleLogo} title="Google" className="w-7"/>
-            </Button>
-            <Button className="bg-gray-200 !w-20 dark:bg-gray-400">
-              <img src={facebookLogo} title="Facebook" className="w-7"/>
-            </Button>
-            <Button className="bg-gray-200 !w-20 dark:bg-gray-400">
-              <img src={twitterLogo} title="Twitter" className="w-7"/>
-            </Button>
-          </div>
+          <Auth/>
 
           <div className="flex flex-col items-center justify-around">
             <button className="text-blue-900 mt-5 dark:text-blue-400">

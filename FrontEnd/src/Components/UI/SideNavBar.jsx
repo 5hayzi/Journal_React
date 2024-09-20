@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
 import { Bars3Icon } from '@heroicons/react/24/solid';
 import { useState } from 'react';
-
+import { useSelector, useDispatch } from 'react-redux'
+import { switchTheme } from "../../Redux/react_component/theme";
+import { Switch } from '@headlessui/react';
 
 export default function SideNavBar() {
-
+   const loggedIn = useSelector((state)=>state.userData.loggedIn);
+   const theme = useSelector((state)=>state.theme.value);
+   const dispatch = useDispatch()
+   const image = useSelector((state)=>state.userData.img);
    const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -67,25 +72,41 @@ export default function SideNavBar() {
          </div>
          <div>
          <ul className="space-y-2 font-medium">
+         <li className='flex flex-row justify-between p-2 text-gray-900 ms-3 dark:text-white '>
+            <label htmlFor="Dark_Mode_Switch">Dark Mode</label>
+            <Switch
+                id='Dark_Mode_Switch'
+                checked={theme === 'dark'}
+                onChange={() => dispatch(switchTheme(!theme))}
+                className="group inline-flex h-6 w-11 items-center rounded-full bg-gray-400 transition data-[checked]:bg-blue-600 dark:data-[checked]:bg-[#222253] dark:bg-gray-500" 
+              >
+                <span className="size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
+              </Switch>
+            </li>
          <li>
+         {(loggedIn) &&
             <Link to="/settings/account" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white" onClick={()=>setIsOpen(!isOpen)}>
                
                <span className="flex-1 ms-3 whitespace-nowrap">User</span>
-            </Link>
+               <img src={image} className='size-11 rounded-full border border-black flex items-center justify-center '/>
+            </Link>}
          </li>
+        
          <li>
+         {(!loggedIn) &&
             <Link to="/access/login" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white" onClick={()=>setIsOpen(!isOpen)}>
-               
                <span className="flex-1 ms-3 whitespace-nowrap">Sign In</span>
-            </Link>
+            </Link>}
          </li>
          <li>
-            <Link to="/access/signup" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white" onClick={()=>setIsOpen(!isOpen)}>
-               
+         {(!loggedIn) &&
+            <Link to="/access/signup" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white" onClick={()=>setIsOpen(!isOpen)}> 
                <span className="flex-1 ms-3 whitespace-nowrap">Sign Up</span>
-            </Link>
+            </Link>}
          </li>
-      </ul></div>
+         
+      </ul>
+      </div>
    </div>
 </div>
 
