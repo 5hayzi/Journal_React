@@ -22,8 +22,8 @@ export default function SignOut({setSignOut, ...props}) {
 
 
   return (
-    <div className='absolute w-full h-full backdrop-blur-xl font-montserrat flex justify-center items-center z-20' {...props} id='SignOut'>
-      <div className="w-[15%] flex flex-col relative p-3 gap-9 bg-slate-500 rounded sm:w-1/2 ">
+    <div className='absolute w-full h-full backdrop-blur-lg font-montserrat flex justify-center items-center z-20' {...props} id='SignOut'>
+      <div className="w-[15%] h-1/4 flex flex-col justify-between relative p-3 gap-9 bg-slate-300 rounded sm:w-1/2 dark:bg-slate-500">
       <span className='text-lg dark:text-white text-black'>Are you sure you wanna Sign out?</span>
       <div className='flex flex-row justify-between items-center'>
       <Button onClick={handleClose} className="
