@@ -1,10 +1,18 @@
 import Login from './Login';
 import SignUp from './SignUp';
 import NavBar from '../UI/NavBar';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 function Access() {
     const location = useLocation();
+    const navigate = useNavigate();
+    const loggedIn = useSelector((state)=> state.userData.loggedIn);
+
+    useEffect(()=>{
+        loggedIn ? navigate('/'):''
+    },[])
 
     return (
         <div>
