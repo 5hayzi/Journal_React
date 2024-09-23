@@ -1,25 +1,44 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { UserIcon } from '@heroicons/react/24/solid'// Make sure to import your icon
 import { Link } from 'react-router-dom';
 import { Switch } from '@headlessui/react';
 import { useSelector, useDispatch } from 'react-redux'
 import { switchTheme } from "../../Redux/react_component/theme";
+import SignOut from '../Access/SignOut';
+import ReactDOM from 'react-dom';
 
 function AccountDropdown() {
   const [isOpen, setIsOpen] = useState(false);
+  const [signOut, setSignOut] = useState(false);
   const loggedIn = useSelector((state)=>state.userData.loggedIn);
   const image = useSelector((state)=>state.userData.img);
   
   const theme = useSelector((state)=>state.theme.value);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
   
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsOpen(false); // Close dropdown if clicked outside
+    }
+  };
+
+  useEffect(() => {
+    // Add event listener to the document
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+  
 
   return (
-    <div className="relative">
+    <div className="relative" ref={dropdownRef}>
       
       {(loggedIn)&&<img crossOrigin="anonymous" src={`http://localhost:3000${image}`} onClick={toggleDropdown} className='size-9 rounded-full flex items-center justify-center '/>}
       {(!loggedIn)&& 
@@ -58,7 +77,7 @@ function AccountDropdown() {
                 Settings
               </Link>
             </li>
-            <li className='flex flex-row justify-between px-4 py-2 text-gray-800 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700'>
+            <li className='flex flex-row justify-between items-center px-4 py-2 text-gray-800 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700'>
             <label htmlFor="Dark_Mode_Switch">Dark Mode</label>
             <Switch
                 id='Dark_Mode_Switch'
@@ -69,9 +88,19 @@ function AccountDropdown() {
                 <span className="size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
               </Switch>
             </li>
+            <li>
+              <button className="w-full text-start px-4 py-2 text-[red] hover:bg-gray-100 dark:hover:bg-gray-700 font-bold" onClick={()=>setSignOut(true)}>
+                Sign Out
+              </button>
+            </li>
           </ul>
         </div>
       )}
+      {signOut && ReactDOM.createPortal(
+        <SignOut setSignOut={setSignOut}/>,
+        document.body // Append the SignOut component to the <body> element
+      )}
+      
     </div>
   );
 }

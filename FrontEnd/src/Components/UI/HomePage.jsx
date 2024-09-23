@@ -12,12 +12,11 @@ import AboutSection from './AboutSection';
 function HomePage() {
 
   
+  
   return (
     <>
     
     <div className='relative main-div dark:bg-gray-800 ' id='main-div'>
-      
-      
       <img src='src\assets\Images\Homepage.png' className='w-full h-[135%] absolute top-0 sm:hidden'/>
       <img src='src\assets\Images\books-background.png' className='w-full absolute bottom-0 hidden sm:flex'/>
       <NavBar/>

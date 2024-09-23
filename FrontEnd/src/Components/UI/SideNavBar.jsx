@@ -1,21 +1,40 @@
 import { Link } from 'react-router-dom';
 import { Bars3Icon } from '@heroicons/react/24/solid';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { switchTheme } from "../../Redux/react_component/theme";
 import { Switch } from '@headlessui/react';
+import SignOut from '../Access/SignOut';
+import ReactDOM from 'react-dom';
 
 export default function SideNavBar() {
    const loggedIn = useSelector((state)=>state.userData.loggedIn);
+   const [signOut, setSignOut] = useState(false);
    const theme = useSelector((state)=>state.theme.value);
    const dispatch = useDispatch()
    const image = useSelector((state)=>state.userData.img);
+   const openRef = useRef();
    const [isOpen, setIsOpen] = useState(false);
+
+   const handleClickOutside = (event) => {
+      if (openRef.current && !openRef.current.contains(event.target)) {
+        setIsOpen(false); // Close dropdown if clicked outside
+      }
+    };
+  
+    useEffect(() => {
+      // Add event listener to the document
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        // Cleanup the event listener
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, []);
 
     return (
         <>
                
-<div className="text-center">
+<div className="text-center" ref={openRef}>
    <button className="text-white bg-gray-400/25 rounded-lg text-sm px-2 py-2" type="button" onClick={()=>{setIsOpen(true)}}>
    <Bars3Icon className="size-6 fill-black/100"/>
    </button>
@@ -23,7 +42,7 @@ export default function SideNavBar() {
 
 <div className={`fixed top-0 w-64  h-full p-4 overflow-y-hidden left-0 -translate-x-full transition-transform duration-500 ${isOpen ? '!translate-x-0':''} backdrop-blur-2xl`} tabIndex="-1">
     <h5 className="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu</h5>
-    <button type="button" className="text-gray-400 bg-transparent rounded-lg text-sm p-1.5 absolute top-2.5 end-2.5 inline-flex items-center" onClick={()=>setIsOpen(!isOpen)}>
+    <button type="button" className="text-gray-400 bg-transparent rounded-lg text-sm p-1.5 absolute top-2.5 end-2.5 inline-flex items-center" onClick={()=>setIsOpen(false)}>
         <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
         <span className="sr-only">Close menu</span>
     </button>
@@ -91,7 +110,13 @@ export default function SideNavBar() {
                <img crossOrigin="anonymous" src={`http://localhost:3000${image}`} className={`size-11 rounded-full flex items-center justify-center`}/>
             </Link>}
          </li>
-        
+        <li>
+         {(loggedIn) &&
+            <button className="flex items-center p-2 rounded-lg text-[red] ms-3" onClick={()=>setSignOut(!signOut)}>
+            Sign Out
+          </button>
+          }
+         </li>
          <li>
          {(!loggedIn) &&
             <Link to="/access/login" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white" onClick={()=>setIsOpen(!isOpen)}>
@@ -105,10 +130,15 @@ export default function SideNavBar() {
             </Link>}
          </li>
          
+         
       </ul>
       </div>
    </div>
 </div>
+{signOut && ReactDOM.createPortal(
+        <SignOut setSignOut={setSignOut}/>,
+        document.body // Append the SignOut component to the <body> element
+      )}
 
         </>
     );
