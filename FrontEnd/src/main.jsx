@@ -19,6 +19,8 @@ import {store} from '../src/Redux/store.js'
 import { persistor } from '../src/Redux/store.js'
 import { PersistGate } from 'redux-persist/integration/react';
 import { useSelector} from 'react-redux';
+import SignOut from './Components/Access/SignOut.jsx';
+import { Toaster } from 'react-hot-toast';
 
 const router = createBrowserRouter([
   {
@@ -73,6 +75,10 @@ const router = createBrowserRouter([
     path:"/settings/delete-account",
     element:<Settings/>
   },
+  {
+    path:"/signout",
+    element:<SignOut/>
+  },
   
 ])
 if (localStorage.getItem('theme') === 'dark') {
@@ -83,6 +89,7 @@ if (localStorage.getItem('theme') === 'dark') {
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <Toaster/>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <RouterProvider router={router}/>
