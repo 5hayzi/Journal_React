@@ -5,7 +5,8 @@ import { ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/solid'
 import Button from '../UI/Button'
 import { Link, useNavigate} from 'react-router-dom'
 import axios from 'axios';
-import Auth from './Auth'
+import Auth from './Auth';
+import toast from 'react-hot-toast';
 
 function SignUp() {
   const[isOpen, setIsOpen] = useState(false);
@@ -66,12 +67,13 @@ function SignUp() {
       }
      })
      .then((res)=>{
+      navigate('/')
+      toast.success('Successfully Signed Up')
       console.log(res);
      })
      .catch((error)=>{
-      const {res} = error;
       console.log(error);
-      
+      toast.error("Sign Up failure")      
      })
   }
   

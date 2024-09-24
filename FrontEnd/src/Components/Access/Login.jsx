@@ -7,7 +7,8 @@ import Button from '../UI/Button';
 import {useDispatch} from 'react-redux';
 import {setValue} from '../../Redux/react_component/UserData.js';
 import Auth from './Auth.jsx';
-import axios from 'axios';
+// import axios from 'axios';
+import toast from 'react-hot-toast';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -37,10 +38,12 @@ function Login() {
       setCredentials(false);
         return;
      }
+     toast.success("User Logged In")
      dispatch(setValue(data));
       navigate('/');
     } catch (error) {
-      console.log(error);  
+      console.log(error);
+      toast.error("Error Logging In")  
     }
     // axios.post('/api/auth/login',formData,{
     //   headers:{
