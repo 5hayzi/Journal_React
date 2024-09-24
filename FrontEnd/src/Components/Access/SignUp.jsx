@@ -63,7 +63,7 @@ function SignUp() {
     e.preventDefault(); 
      axios.post('/api/auth/signup',formData,{
       headers:{
-        "Content-Type":"application/json"
+        "Content-Type":"multipart/form-data"
       }
      })
      .then((res)=>{
