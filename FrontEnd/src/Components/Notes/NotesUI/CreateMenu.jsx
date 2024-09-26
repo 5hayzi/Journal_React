@@ -1,39 +1,43 @@
 import PropTypes from 'prop-types'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import moment from 'moment';
-import Button from './Button';
+import Button from '../../UI/Button';
+import axios from 'axios'
+import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 
-function CreateMenu(props) {
+function CreateMenu({setIsOpen}) {
   const [title, setTitle] = useState('');
-  const [createData, setCreateData] = useState(
-    { 
-      title: '',
-      date: '' 
-    });
-  const [date, setDate] = useState();
-
-  setTimeout((()=>{
-    setDate(`${moment().format("D-M-YYYY")}`)
-
-  }), 200)
+  const date = moment().format("D-M-YYYY");
+  const author = useSelector((state)=>state.userData.name);
 
   const handleOpen = ()=>{
-      props.setIsOpen(false)
+      setIsOpen(false)
   }
-  
-  useEffect(()=>{
-    setCreateData({
-      title: title,
-      date: date
-    })
-  },[title]);
-
-
 
   const onSubmit = (e)=>{
+    const formData = {
+      author : author,
+      title : title,
+      dateCreated : date
+    }
+    console.log(formData);
     e.preventDefault();
-    props.setData([...props.data, createData]);
-    props.setIsOpen(false)
+  
+    axios.post('/api/notes',formData,{
+      headers:{
+        "Content-Type":"application/json"
+      }
+     })
+     .then((res)=>{
+      toast.success('Notes Added')
+      setIsOpen(false)
+      console.log(res);
+     })
+     .catch((error)=>{
+      console.log(error);
+      toast.error("Cannot add Notes")      
+     })
   }
 
   return (
@@ -45,7 +49,7 @@ function CreateMenu(props) {
           </div>
           <div className='flex flex-col gap-1'>
           <label htmlFor="create_date" className="text-lg">Journal Date: </label>
-          <input type="text" name="journal_date" placeholder="Enter Title" value={date} className="p-2 text-lg border border-gray-400 rounded focus:border-black" id='create_date' required/>
+          <span className="p-2 h-12 text-lg border border-gray-400 rounded focus:border-black overflow-hidden dark:text-black">{date}</span>
           </div>
           <div className="flex flex-row w-full justify-between">
           <Button onClick={handleOpen} className="
@@ -65,8 +69,6 @@ function CreateMenu(props) {
 
 CreateMenu.propTypes = {
   setIsOpen: PropTypes.func,
-  setData: PropTypes.func,
-  data: PropTypes.array
 }
 
 export default CreateMenu;
