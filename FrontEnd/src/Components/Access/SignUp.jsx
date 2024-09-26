@@ -51,7 +51,7 @@ function SignUp() {
     }
   }
   
-  const onSubmit = async (e)=>{
+  const onSubmit = (e)=>{
     const formData = {
       name: `${firstName} ${secondName}`,
       email: email,
@@ -61,7 +61,7 @@ function SignUp() {
       twoFactor: twoFactor,
     }
     e.preventDefault(); 
-     axios.post('/api/auth/signup',formData,{
+    axios.post('/api/auth/signup',formData,{
       headers:{
         "Content-Type":"multipart/form-data"
       }
@@ -77,7 +77,6 @@ function SignUp() {
      })
   }
   
-  console.log(loading);
   
   useEffect(() => {
     (passCheck === password)? setIsMatch(true) : setIsMatch(false);
@@ -277,8 +276,6 @@ function SignUp() {
             focus:ring-indigo-300  
             focus-visible:ring-indigo-300"
           disabled={!agreeCheck || loading} 
-          onClick={()=>console.log("this is accepatbel")
-          }
         >
           Sumbit
         </Button>
