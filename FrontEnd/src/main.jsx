@@ -36,7 +36,7 @@ const router = createBrowserRouter([
   element:<NoteMenu/>
   },
   {
-    path:"/view-notes/editor",
+    path:"/view-notes/editor/:id",
     element:<NotesEditor/>
   },
   {
