@@ -11,9 +11,10 @@ export default function SignOut({setSignOut}) {
     });
     
     setSignOut(false);
+
     setInterval(()=>{
       window.location.reload();
-    },2000)
+    },1000)
     
   }
 
