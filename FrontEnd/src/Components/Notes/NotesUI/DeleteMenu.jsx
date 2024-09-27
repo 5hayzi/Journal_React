@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types'
 import Button from '../../UI/Button'
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
-export default function DeleteMenu({setOpenDelete, id, title}) {
+export default function DeleteMenu({setOpenDelete, id, title, setChange,}) {
+    toast.error('Error')
     const handleClose = ()=>{
         setOpenDelete(false);
     }
@@ -10,6 +12,7 @@ export default function DeleteMenu({setOpenDelete, id, title}) {
         axios.delete(`/api/notes/${id}`)
         .then(() => {
             setOpenDelete(false);
+            setChange(true);
         }).catch((err) => {
             console.log(err); 
         });
@@ -43,5 +46,6 @@ export default function DeleteMenu({setOpenDelete, id, title}) {
 DeleteMenu.propTypes ={
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    setOpenDelete: PropTypes.func.isRequired
+    setOpenDelete: PropTypes.func.isRequired,
+    setChange: PropTypes.func.isRequired,
 }
