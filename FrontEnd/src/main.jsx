@@ -18,7 +18,6 @@ import { Provider } from 'react-redux'
 import {store} from '../src/Redux/store.js'
 import { persistor } from '../src/Redux/store.js'
 import { PersistGate } from 'redux-persist/integration/react';
-import { useSelector} from 'react-redux';
 import SignOut from './Components/Access/SignOut.jsx';
 import { Toaster } from 'react-hot-toast';
 
