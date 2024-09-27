@@ -6,11 +6,12 @@ import { useState } from "react"
 import ReactDOM from 'react-dom'
 import DeleteMenu from "./DeleteMenu"
 
-function Titleblock({title, date, img, id}) {
+function Titleblock({title, date, img, id, setChange}) {
     const [openDelete, setOpenDelete] = useState(false);
-
+    
     const handleDelete = ()=>{
         setOpenDelete(true);
+        setChange(false);
     }
   return (
     <>
@@ -78,7 +79,7 @@ function Titleblock({title, date, img, id}) {
         </div>
     </div>
     {openDelete && ReactDOM.createPortal(
-        <DeleteMenu setOpenDelete={setOpenDelete} id={id} title={title}/>,
+        <DeleteMenu setOpenDelete={setOpenDelete}  id={id} title={title}  setChange={setChange}/>,
         document.body
       )}
     </>
@@ -89,7 +90,8 @@ Titleblock.propTypes ={
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
-    img: PropTypes.string
+    img: PropTypes.string,
+    setChange: PropTypes.func.isRequired,
 }
 
 
