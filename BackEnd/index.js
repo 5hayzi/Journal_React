@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import authRouter from './routes/auth.route.js';
+import notesRouter from './routes/notes.route.js'
 import helmet from 'helmet';
 import cors from 'cors';
 import path from 'path';
@@ -34,6 +35,7 @@ app.use((req, res, next) => {
 
 
 app.use("/api/auth", authRouter);
+app.use("/api", notesRouter);
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
