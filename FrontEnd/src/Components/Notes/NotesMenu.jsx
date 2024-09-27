@@ -2,33 +2,37 @@ import { useState, useEffect } from "react";
 import NavBar from "../UI/NavBar";
 import Titleblock from "./NotesUI/Titleblock"
 import { PlusIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-import CreateMenu from "../UI/CreateMenu";
+import CreateMenu from "./NotesUI/CreateMenu";
 import Button from "../UI/Button";
 import Footer from '../UI/Footer';
 import { useSelector } from "react-redux";
-
+import ReactDOM from 'react-dom';
+import axios from "axios";
 
 function NotesMenu() {
   const [search, setSearch] = useState('');
+  const [change, setChange] = useState(false);
   const pageData = useSelector((state) => state.editorData.pageData);
-  const [data, setData] = useState([
-  {
-    title: "first dairy",
-    date: "31-8-2024"
-  }
-]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [data, setData] = useState([]); // Initialize with an empty array
+  const [filterData, setFilterData] = useState(data);
 
+  useEffect(() => {
+    axios.get('/api/notes')
+      .then((res) => {
+        const resData = res.data;
+        setData(resData);
+      })
+      .catch((err) => {
+        console.error("Error fetching notes:", err); // Handle any error
+      });
+  }, [isOpen, change]); // Empty dependency array to run only once on mount
 
-
-const [filterData, setFilterData] = useState(data);
-
-  useEffect(()=>{
+useEffect(()=>{
    setFilterData(data.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
   },[search, data]);
-  
 
 
-const [isOpen, setIsOpen] = useState(false);
 
 const createNewPage = ()=>{
 setIsOpen(!isOpen);
@@ -41,7 +45,7 @@ setIsOpen(!isOpen);
   
     <div className="w-full h-[90%] flex flex-col px-4 relative">
       <span className="text-black text-4xl font-bold font-montserrat dark:text-[#dddddd] py-2 self-center">Notes Menu</span>
-    {isOpen && (<CreateMenu setIsOpen={setIsOpen} setData={setData} data={data}/>)}
+    
     <div className="w-full h-[90%] absolute top-3 flex flex-row justify-evenly"> 
     <div className="size-32 rounded-full bg-[#2596ff] relative blur-2xl top-[50%] animate-up"></div>
     <div className="size-32 rounded-full bg-[#eeeb37] relative blur-2xl top-[50%] animate-up animation-delay-1000"></div>
@@ -73,12 +77,13 @@ setIsOpen(!isOpen);
     <div className="h-full w-full flex flex-col items-center overflow-y-scroll ">
       {
         (data == "")? (
-          <span  className="text-3xl font-montserrat dark:text-[#a5a5a5]">Add some pages to your diary</span>
+          <span  className="text-3xl font-montserrat dark:text-[#a5a5a5] my-auto sm:text-xl">Add some pages to your diary</span>
         ):(
           <div className="w-11/12 h-[17rem] flex  flex-row gap-7 flex-wrap justify-start sm:h-fit sm:flex-col sm:gap-5 sm:flex-nowrap sm:items-center sm:w-full">
             {filterData.map((element, index) => {
               const img = pageData[index] ? pageData[index].img : null;
-          return (<Titleblock key={index} title={element.title} date={element.date} img={img}/>);
+              
+          return (<Titleblock key={index} id={element._id} title={element.title} date={element.dateCreated} img={img} setChange={setChange}/>);       
           })}
       </div>
         )
@@ -93,6 +98,10 @@ setIsOpen(!isOpen);
     <div className="dark:bg-gray-800 pt-10">
       <Footer/>
     </div>
+    {isOpen && ReactDOM.createPortal(
+      <CreateMenu setIsOpen={setIsOpen}/>,
+  document.body)}
+  
     </>
     
   )
