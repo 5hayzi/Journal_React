@@ -1,12 +1,13 @@
 import Notes from "../Model/notes.model.js";
 
 export const createNote = async (req, res) => {
-  const { author, title, dateCreated } = req.body;
+  const { author, title, dateCreated, userId } = req.body;
   try {
     const newNote = await Notes.create({
       author,
       title,
       dateCreated,
+      userId,
     });
     res.status(200).json(newNote);
   } catch (error) {
@@ -42,7 +43,7 @@ export const updateNote = async (req, res) => {
 export const readNote = async (req, res) => {
   const { id } = req.params;
   try {
-    const note = await Notes.findById(id);
+    const note = await Notes.find({ _id: id });
     res.status(200).json(note);
   } catch (err) {
     console.error("Error getting file", err);
@@ -60,8 +61,9 @@ export const deleteNote = async (req, res) => {
   }
 };
 export const AllNote = async (req, res) => {
+  const { userId } = req.query;
   try {
-    const note = await Notes.find(); // Fetch all notes from the database
+    const note = await Notes.find({ userId }); // Fetch all notes from the database
     res.status(200).json(note);
   } catch (err) {
     console.error("Error fetching notes:", err);

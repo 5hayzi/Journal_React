@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const notesSchema = mongoose.Schema({
+  userId: {
+    type: String,
+    required: true,
+  },
   author: {
     type: String,
     required: true,
