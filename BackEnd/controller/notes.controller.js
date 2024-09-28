@@ -43,7 +43,7 @@ export const updateNote = async (req, res) => {
 export const readNote = async (req, res) => {
   const { id } = req.params;
   try {
-    const note = await Notes.find({ _id: id });
+    const note = await Notes.findById(id);
     res.status(200).json(note);
   } catch (err) {
     console.error("Error getting file", err);
