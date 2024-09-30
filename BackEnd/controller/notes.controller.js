@@ -53,17 +53,27 @@ export const readNote = async (req, res) => {
 export const deleteNote = async (req, res) => {
   const { id } = req.params;
   try {
-    await Notes.findOneAndDelete({ _id: id }); // Fetch all notes from the database
+    await Notes.findOneAndDelete({ _id: id });
     res.status(200).json(`${id} deleted`);
   } catch (err) {
     console.error("Error Deleting Note", err);
     res.status(500).json({ message: error.message });
   }
 };
+export const deleteAllNotes = async (req, res) => {
+  const { userId } = req.query;
+  try {
+    await Notes.deleteMany({ userId });
+
+    res.status(200).json(`All notes by user ${userId} deleted.`);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 export const AllNote = async (req, res) => {
   const { userId } = req.query;
   try {
-    const note = await Notes.find({ userId }); // Fetch all notes from the database
+    const note = await Notes.find({ userId });
     res.status(200).json(note);
   } catch (err) {
     console.error("Error fetching notes:", err);
