@@ -29,16 +29,18 @@ export default function NotesEditor() {
   useEffect(() => {
     if (!fired.current) {
       fired.current = true;
-      toastId.current = toast.loading("loading");
+      toastId.current = toast.loading("Retrieving data");
       axios
         .get(`/api/notes/${id}`)
         .then((res) => {
           const newdata = res.data;
           setData(newdata);
-          toast.success("ok", { id: toastId.current });
+          toast.success("Data Retrieved", { id: toastId.current });
+          toastId.current = null;
         })
         .catch((err) => {
           toast.error(err, { id: toastId.current });
+          toastId.current = null;
         });
     }
   }, [id]);
@@ -66,7 +68,7 @@ export default function NotesEditor() {
         },
       })
       .then(() => {
-        toast.success("");
+        toast.success("Data Retrieved");
       })
       .catch((err) => {
         toast.error(err);
