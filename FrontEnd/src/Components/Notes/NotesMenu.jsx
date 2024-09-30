@@ -26,9 +26,9 @@ function NotesMenu() {
         setData(resData);
       })
       .catch((err) => {
-        console.error("Error fetching notes:", err); // Handle any error
+        console.log(err);
       });
-  }, [isOpen, change]); // Empty dependency array to run only once on mount
+  }, [isOpen, change]);
 
   useEffect(() => {
     setFilterData(
