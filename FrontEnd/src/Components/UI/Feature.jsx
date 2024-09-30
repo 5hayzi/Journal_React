@@ -14,7 +14,10 @@ export default function Feature() {
       </span>
       <div className="w-[90%] h-3/6 relative flex justify-evenly items-center sm:flex-col sm:h-fit sm:justify-start sm:gap-1">
         <div className="w-2/6 h-full rounded-lg backdrop-blur bg-slate-600 bg-opacity-10 sm:w-full sm:h-[11rem] flex items-center justify-center">
-          <img src={gif1} className="w-[90%] rounded-lg" />
+          <img
+            src={gif1}
+            className="w-[90%] rounded-lg sm:w-[80%] sm:h-[95%]"
+          />
         </div>
         <div className="border-l-2 border-black w-2/6 h-fit flex flex-col gap-4 pl-11 sm:w-11/12 dark:border-[#dddddd]">
           <span className="text-3xl font-semibold text-black sm:text-2xl dark:text-[#dddddd]">
@@ -36,14 +39,19 @@ export default function Feature() {
             across all your devices.
           </span>
         </div>
-        <div className="w-2/6 h-full rounded-lg backdrop-blur bg-slate-600 bg-opacity-10 sm:w-full sm:h-[11rem] flex items-center justify-center">
-          {" "}
-          <img src={gif2} className="w-[90%] rounded-lg" />{" "}
+        <div className="w-2/6 h-full rounded-lg backdrop-blur bg-slate-600 bg-opacity-10 sm:w-full sm:h-fit flex items-center justify-center">
+          <img
+            src={gif2}
+            className="w-[90%] rounded-lg sm:w-[80%] sm:h-[95%]"
+          />
         </div>
       </div>
       <div className="w-[90%] h-3/6 relative flex justify-evenly items-center sm:flex-col sm:h-fit sm:justify-start sm:gap-1 ">
         <div className="w-2/6 h-full rounded-lg backdrop-blur bg-slate-600 bg-opacity-10 sm:w-full sm:h-[11rem] flex items-center justify-center">
-          <img src={gif3} className="w-[90%] rounded-lg" />
+          <img
+            src={gif3}
+            className="w-[90%] rounded-lg sm:w-[80%] sm:h-[95%]"
+          />
         </div>
         <div className="border-l-2 border-black w-2/6 h-fit flex flex-col gap-4 pl-11 sm:w-11/12 dark:border-[#dddddd]">
           <span className="text-3xl font-semibold text-black sm:text-2xl dark:text-[#dddddd]">
@@ -64,7 +72,10 @@ export default function Feature() {
           </span>
         </div>
         <div className="w-2/6 h-full rounded-lg backdrop-blur bg-slate-600 bg-opacity-10 sm:w-full sm:h-[11rem] flex items-center justify-center">
-          <img src={gif4} className="w-[90%] rounded-lg" />
+          <img
+            src={gif4}
+            className="w-[90%] rounded-lg sm:w-[80%] sm:h-[95%]"
+          />
         </div>
       </div>
     </div>
