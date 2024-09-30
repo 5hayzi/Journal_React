@@ -1,4 +1,7 @@
+import gif1 from "../../assets/gifs/Gif_1.gif";
+import gif2 from "../../assets/gifs/Gif_2.gif";
 import gif3 from "../../assets/gifs/Gif_3.gif";
+import gif4 from "../../assets/gifs/Gif_4.gif";
 
 export default function Feature() {
   return (
@@ -11,7 +14,7 @@ export default function Feature() {
       </span>
       <div className="w-[90%] h-3/6 relative flex justify-evenly items-center sm:flex-col sm:h-fit sm:justify-start sm:gap-1">
         <div className="w-2/6 h-full rounded-lg backdrop-blur bg-slate-600 bg-opacity-10 sm:w-full sm:h-[11rem] flex items-center justify-center">
-          <img src={gif3} className="w-[90%] rounded-lg" />
+          <img src={gif1} className="w-[90%] rounded-lg" />
         </div>
         <div className="border-l-2 border-black w-2/6 h-fit flex flex-col gap-4 pl-11 sm:w-11/12 dark:border-[#dddddd]">
           <span className="text-3xl font-semibold text-black sm:text-2xl dark:text-[#dddddd]">
@@ -35,7 +38,7 @@ export default function Feature() {
         </div>
         <div className="w-2/6 h-full rounded-lg backdrop-blur bg-slate-600 bg-opacity-10 sm:w-full sm:h-[11rem] flex items-center justify-center">
           {" "}
-          <img src={gif3} className="w-[90%] rounded-lg" />{" "}
+          <img src={gif2} className="w-[90%] rounded-lg" />{" "}
         </div>
       </div>
       <div className="w-[90%] h-3/6 relative flex justify-evenly items-center sm:flex-col sm:h-fit sm:justify-start sm:gap-1 ">
@@ -61,7 +64,7 @@ export default function Feature() {
           </span>
         </div>
         <div className="w-2/6 h-full rounded-lg backdrop-blur bg-slate-600 bg-opacity-10 sm:w-full sm:h-[11rem] flex items-center justify-center">
-          <img src={gif3} className="w-[90%] rounded-lg" />
+          <img src={gif4} className="w-[90%] rounded-lg" />
         </div>
       </div>
     </div>
