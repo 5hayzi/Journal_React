@@ -21,7 +21,7 @@ export default function DeleteMenu({ setOpenDelete, id, title, setChange }) {
   };
   return (
     <div className="backdrop-blur-lg w-full h-screen flex justify-center items-center font-montserrat">
-      <div className="w-[20%] min-h-fit bg-[#ececec] dark:bg-slate-700 flex flex-col p-3 rounded justify-between sm:w-[80%]">
+      <div className="w-[20%] min-h-fit bg-[#ececec] dark:bg-slate-700 flex flex-col gap-16 p-3 rounded justify-between sm:w-[80%]">
         <span className="text-2xl dark:text-white">
           Sure you want to delete <br />
           <b>
